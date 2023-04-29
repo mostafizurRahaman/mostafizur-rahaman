@@ -8,7 +8,7 @@ interface PrimaryButton {
 const PrimaryButton = ({ content, children }: PrimaryButton) => {
    
    return (
-      <button className="hover:scale-95 text-lg font-medium flex items-center justify-center bg-secondary px-5 py-[10px] gap-2 rounded-xl ">
+      <button className="hover:scale-95 text-lg font-medium flex items-center justify-center bg-secondary px-5 py-[10px] gap-2 rounded-xl uppercase ">
          <p>{content}</p>
          {children && <span>{children}</span>}
       </button>
