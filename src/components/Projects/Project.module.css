@@ -1,0 +1,13 @@
+.card{
+   background: linear-gradient(-90deg , #FF014F,#4fa6f8) ;
+   animation: progress 1s linear   infinite alternate; 
+}
+
+.card button{
+   background: linear-gradient(90deg , #FF014F,#4fa6f8) ;
+}
+
+@keyframes progress {
+   0% { background: linear-gradient(-90deg , #FF014F,#4fa6f8)}
+   100% {   background: linear-gradient(90deg , #FF014F,#4fa6f8)}
+}
