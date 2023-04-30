@@ -1,0 +1,14 @@
+.experience{
+   box-shadow: 5px 5px 20px #212428 , -5px -5px 20px #212428;
+   
+}
+.experience:hover{
+   animation: 1s infinite  progress ease-in-out;
+   
+}
+
+
+@keyframes progress {
+   0% {background: linear-gradient(-90deg , #FF014F,#4fa6f8)}
+   100% { background: linear-gradient(90deg , #FF014F,#4fa6f8)}
+}
