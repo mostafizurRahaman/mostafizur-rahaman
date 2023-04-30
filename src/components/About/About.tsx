@@ -3,6 +3,7 @@ import mostafizur from "../../assets/mostafizur.png";
 import BioGraphy from "./BioGraphy";
 import PrimaryButton from "../PrimaryButton";
 import { BsDownload } from "react-icons/bs";
+
 const About = () => {
    return (
       <section
@@ -10,6 +11,7 @@ const About = () => {
          id="about"
       >
          <Headings content="About me"></Headings>
+      
          <p className="text-accent  my-5">
             I’m a Frontend Web Developer (MERN) & Computer Science Student. I
             have been learning web development for a year & still learning. As

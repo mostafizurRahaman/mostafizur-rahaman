@@ -11,5 +11,4 @@ html {
    display: block;
    max-width: 100%;
    scroll-behavior: smooth;
-   transition: 0.5s all ease;
 }
