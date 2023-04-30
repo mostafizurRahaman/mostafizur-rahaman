@@ -1,5 +1,7 @@
 import { FiGithub, FiLink, FiServer } from "react-icons/fi";
 import styles from "./Project.module.css";
+
+
 interface projectCardType {
    image: string;
    name: string;
@@ -21,7 +23,7 @@ const ProjectCard = ({
    technology,
 }: projectCardType) => {
    return (
-      <div className={`p-[1px] rounded-lg ${styles.card}`}>
+      <div className={`p-[1px] rounded-lg ${styles.card} `}>
          <div
             className={`text-accent bg-info p-5 rounded-lg  `}
          >
@@ -57,10 +59,10 @@ const ProjectCard = ({
                   ))}
                </div>
                <div className="flex flex-row-reverse items-center justify-between mt-5">
-                  <div className="flex items-center gap-3  text-2xl ">
+                  <div className="flex  items-center gap-3  text-2xl ">
                      <a
                         className=" hover:text-secondary duration-1000"
-                        href={live}
+                        href={client}
                         target="_blank"
                      >
                         {" "}
@@ -68,14 +70,14 @@ const ProjectCard = ({
                      </a>
                      <a
                         className=" hover:text-secondary duration-1000"
-                        href={client}
+                        href={server}
                         target="_blank"
                      >
                         <FiServer></FiServer>
                      </a>
                      <a
                         className=" hover:text-secondary duration-1000"
-                        href={server}
+                        href={live}
                         target="_blank"
                      >
                         {" "}
