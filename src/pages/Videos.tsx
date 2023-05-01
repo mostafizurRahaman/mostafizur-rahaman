@@ -6,7 +6,15 @@ import FullVideos from "./FullVideos";
 const Videos = () => {
    const [videos, setVideos] = useState<[]>([]);
    const [videos1, setVideos1] = useState<[]>([]);
-
+   const handleDownload = () => {
+      const link = document.createElement('a');
+      link.href = '/resume.pdf';
+      link.download = 'Mostafizur-Rahaman-Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+  
    console.log(videos);
 
    useEffect(() => {
@@ -24,7 +32,6 @@ const Videos = () => {
          })
          .catch((err) => console.log(err));
    }, []);
-   
 
    return (
       <div className="bg-info pt-5">
@@ -47,6 +54,10 @@ const Videos = () => {
             ))}
          </div>
          {/* <FullVideos></FullVideos> */}
+         <button className="text-accent" onClick={handleDownload}
+         >
+            Download Resume{" "}
+         </button>
       </div>
    );
 };

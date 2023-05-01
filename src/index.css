@@ -5,10 +5,12 @@
 @tailwind utilities;
 /* Google Fonts */
 
-body,
-html {
+body{
    font-family: "Montserrat", sans-serif;
    display: block;
    max-width: 100%;
+}
+
+html {
    scroll-behavior: smooth;
 }

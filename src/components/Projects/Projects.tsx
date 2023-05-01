@@ -7,9 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { EffectCoverflow, Pagination, Navigation } from "swiper";
 
 interface projectCardType {
    image: string;
@@ -201,7 +202,7 @@ const Projects = () => {
       },
    ];
    return (
-      <section id="projects" className="bg-primary py-16 px-10">
+      <section id="portfolio" className="bg-primary py-16 px-10">
          <Headings content="My Projects"></Headings>
 
          {/* <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-10 my-10 ">
@@ -223,7 +224,7 @@ const Projects = () => {
             <Swiper
                effect={"coverflow"}
                grabCursor={true}
-               centeredSlides={true}
+               // centeredSlides={true}
                slidesPerView={1}
                breakpoints={{
                   640: {
@@ -244,8 +245,9 @@ const Projects = () => {
                   slideShadows: true,
                }}
                pagination={true}
-               modules={[EffectCoverflow, Pagination]}
-               className="mySwiper"
+               navigation={true}
+               modules={[EffectCoverflow, Pagination, Navigation]}
+               className="mySwiper py-10"
             >
                {projects.map((i: projectCardType, idx: number) => (
                   <SwiperSlide key={idx}>

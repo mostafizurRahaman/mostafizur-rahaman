@@ -85,8 +85,8 @@ const ProjectCard = ({
                      </a>
                   </div>
                   <div>
-                     <button className="px-3 py-1 bg-blue-500 font-bold text-white rounded-lg ">
-                        Show Details
+                     <button className="px-3 capitalize   py-1 bg-blue-500 font-medium text-white rounded-lg ">
+                        more details 
                      </button>
                   </div>
                </div>
