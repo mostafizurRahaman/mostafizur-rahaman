@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Headings from "../Shared/Headings";
 import InputBox from "../Shared/InputBox";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useRef } from "react";
 import TextArea from "../Shared/TextArea";
 import SubmitButton from "../Shared/SubmitButton";
 
@@ -31,6 +31,7 @@ const ContactForm = () => {
       message: "",
       general: "",
    });
+   const formRef = useRef<HTMLFormElement>(null);
    const { name, email, message, subject, phone } = formData;
 
    const handleName: onChange = (e) => {
@@ -105,18 +106,24 @@ const ContactForm = () => {
       }
    };
 
-   const onSubmit: () => void = () => {
+   const onSubmit: (e: FormEvent<HTMLFormElement>) => void = (e) => {
+      e.preventDefault();
+      console.log(e);
       if (!name || !email || !message || !subject || !phone) {
          setErrors({ ...errors, general: "Please fill the form carefully" });
          return;
       }
       setErrors({ ...errors, general: "" });
-      console.log(formData)
+      formRef?.current?.reset();
    };
    return (
       <section id="contact" className="bg-primary px-10 pb-10">
          <Headings content="Contact me"></Headings>
-         <form onSubmit={onSubmit} className="w-full flex flex-col gap-5 mt-10">
+         <form
+            onSubmit={onSubmit}
+            className="w-full flex flex-col gap-5 mt-10"
+            ref={formRef}
+         >
             <div className="flex items-center gap-5 w-full justify-center">
                <InputBox
                   onChange={handleName}
@@ -158,11 +165,13 @@ const ContactForm = () => {
                ></TextArea>
                {errors?.general && (
                   <div className="my-3 flex items-center justify-center ">
-                     <p className="py-2 px-3 text-white flex items-center justify-center text-xl  bg-secondary bg-opacity-50 rounded-lg w-1/2">{errors?.general}</p>
+                     <p className="py-2 px-3 text-white flex items-center justify-center text-xl  bg-secondary bg-opacity-50 rounded-lg w-1/2">
+                        {errors?.general}
+                     </p>
                   </div>
                )}
-               <SubmitButton disabled={!name || !email || !message || !subject || !phone}
-               
+               <SubmitButton
+                  disabled={!name || !email || !message || !subject || !phone}
                ></SubmitButton>
             </div>
          </form>
