@@ -1,0 +1,8 @@
+.iconsShadow{
+   box-shadow: inset  5px 5px 11px #0d0e10,
+            inset -5px -5px 11px #353a40;
+}
+.iconsShadow:hover{
+   box-shadow:   5px 5px 11px #0d0e10,
+             -5px -5px 11px #353a40;
+}

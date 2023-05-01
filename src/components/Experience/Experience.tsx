@@ -1,9 +1,9 @@
-import Headings from "../Headings";
+import Headings from "../Shared/Headings";
 import ExperienceCard from "./ExperienceCard";
 
 const Experience = () => {
    return (
-      <section id="experience" className="bg-primary px-10 ">
+      <section id="experience" className="bg-primary px-5 md:px-10 ">
          <Headings content="Experience"></Headings>
          <div className="flex  md:flex-row flex-col items-center justify-between ">
             <div className="flex flex-col gap-20 border-l-2 border-accent my-10 ">

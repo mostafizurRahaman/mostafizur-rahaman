@@ -22,11 +22,11 @@ const Technology = () => {
                  100% { width: 75%;  background: linear-gradient(90deg , #FF014F,#4fa6f8)}
             }
         `}</style>
-            <div className="skill w-full h-4 relative border-2 border-white  border-collapse rounded-lg">
+            <div className="skill w-full h-4 relative border-2 border-white  border-collapse rounded-lg p-[2.5px]">
                <div
                   style={style}
-                  className="progress-bar w-0 h-[100%] bg-secondary after:w-3 after:h-3 after:bg-secondary after:block   after:absolute after:right-0 after:top-[-16px]  after:rotate-45 before:w-10 before:h-5 before:bg-secondary before:flex before:items-center before:justify-center before:text-accent before:text-semibold  relative before:absolute before:right-0 before:top-[-30px] before:z-10 before:translate-x-1/2 duration-1000 before:font-semibold
-            before:rounded-lg after:translate-x-1/2 before:content-['75%'] before:text-sm rounded-md "
+                  className="progress-bar w-0 h-[100%] bg-secondary after:w-3 after:h-3 after:bg-secondary after:block   after:absolute after:right-0 after:top-[-16px]  after:rotate-45 before:w-10 before:h-5 before:bg-secondary before:flex before:items-center before:justify-center before:text-accent before:text-semibold  relative before:absolute before:right-0 before:top-[-30px] before:z-10 before:translate-x-1/2 duration-1000 
+            before:rounded-lg after:translate-x-1/2 before:content-['75%'] before:text-lg  before:font-bold rounded-lg"
                ></div>
             </div>
          </div>

@@ -1,0 +1,11 @@
+.testmonialCard {
+   border-radius: 13px;
+   background: #212428;
+   box-shadow: 5px 5px 11px #0d0e10, -5px -5px 11px #353a40;
+   transition: 0.5s all ease-in-out;
+}
+.testmonialCard:hover {
+   border-radius: 13px;
+   background: #212428;
+   box-shadow: 5px 5px 11px #0d0e10 inset, -5px -5px 11px #353a40 inset;
+}

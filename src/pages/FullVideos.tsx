@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
-import Headings from '../components/Headings';
+import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
+import Headings from "../components/Shared/Headings";
 
 const FullVideos = () => {
-    const [videos, setVideos] = useState<[]>([]); 
+   const [videos, setVideos] = useState<[]>([]);
 
    useEffect(() => {
       fetch(
@@ -21,7 +21,7 @@ const FullVideos = () => {
          .catch((err) => console.log(err));
    }, []);
    return (
-       <div className="bg-info pt-5">
+      <div className="bg-info pt-5">
          <Headings content="Web Development Tutorials"></Headings>
          <div className="grid  grid-cols-1 md:grid-cols-3 gap-5 items-center justify-center p-10">
             {videos?.map((i: any) => (

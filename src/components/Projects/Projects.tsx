@@ -1,4 +1,4 @@
-import Headings from "../Headings";
+import Headings from "../Shared/Headings";
 import ProjectCard from "./ProjectCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";

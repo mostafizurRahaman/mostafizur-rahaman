@@ -1,4 +1,4 @@
-import Headings from "../Headings";
+import Headings from "../Shared/Headings";
 import TestimonialCard from "./TestimonialCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -68,44 +68,44 @@ const Testimonials = () => {
              }
          </div> */}
          <Swiper
-      //   slidesPerView={3}
-        grid={{
-          rows: 1,
-        }}
-        grabCursor={true}
-        spaceBetween={20}
-        breakpoints={{
-         640: {
-            slidesPerView: 1,
-         },
-         768: {
-            slidesPerView: 2,
-         },
-         1024: {
-            slidesPerView: 3,
-         },
-      }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Grid, Pagination]}
-        className="mySwiper py-20 pb-10"
-      >
-         {
-               reviews?.map((i:review, idx:number)=> {
-                  return  <SwiperSlide>
-                  <TestimonialCard key={idx}
-                            image={i.image}
-                            name={i.name}
-                            userName={i.userName}
-                            reviews={i.reviews}
-                            summery={i.summery}
-                         ></TestimonialCard>
-          
+            //   slidesPerView={3}
+            grid={{
+               rows: 1,
+            }}
+            grabCursor={true}
+            spaceBetween={20}
+            breakpoints={{
+               640: {
+                  slidesPerView: 1,
+               },
+               768: {
+                  slidesPerView: 2,
+               },
+               1024: {
+                  slidesPerView: 3,
+               },
+            }}
+            pagination={{
+               clickable: true,
+            }}
+            modules={[Grid, Pagination]}
+            className="mySwiper py-20 pb-10"
+         >
+            {reviews?.map((i: review, idx: number) => {
+               return (
+                  <SwiperSlide>
+                     <TestimonialCard
+                        key={idx}
+                        image={i.image}
+                        name={i.name}
+                        userName={i.userName}
+                        reviews={i.reviews}
+                        summery={i.summery}
+                     ></TestimonialCard>
                   </SwiperSlide>
-               })
-             }
-      </Swiper>
+               );
+            })}
+         </Swiper>
       </section>
    );
 };

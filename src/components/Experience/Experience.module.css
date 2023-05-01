@@ -1,10 +1,12 @@
 .experience{
-   box-shadow: 5px 5px 20px #212428 , -5px -5px 20px #212428;
+  border-radius: 13px;
+background: #212428;
+box-shadow:  5px 5px 11px #0d0e10,
+             -5px -5px 11px #353a40;
    
 }
 .experience:hover{
    animation: 1s infinite  progress ease-in-out;
-   
 }
 
 

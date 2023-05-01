@@ -1,4 +1,7 @@
 import { FaStar } from "react-icons/fa";
+
+import styles from './testimonials.module.css'; 
+
 interface CardType {
    image: string;
    name: string;
@@ -15,7 +18,7 @@ const TestimonialCard = ({
    summery,
 }: CardType) => {
    return (
-      <article className="text-white bg-info p-5 rounded-s-md">
+      <article className={`text-white bg-info p-5 ${styles.testmonialCard}`}>
          <div className="flex items-center gap-3 ">
             <div className=" w-20 h-20 bg-gradient-to-l from-secondary rounded-full  flex items-center justify-center to-blue-500">
                <img
@@ -25,12 +28,12 @@ const TestimonialCard = ({
                />
             </div>
             <div>
-               <h4>{name}</h4>
-               <p className="text-sm text-blue-500 font-medium">@{userName}</p>
+               <h4 className="text-[22px] uppercase">{name}</h4>
+               <p className="text-lg text-blue-500 font-medium mt-[-8px]">@{userName}</p>
                <p className="flex items-center gap-1  ">
                   {reviews &&
                      [...Array(reviews).keys()].map(
-                        (i: number, idx: number) => <FaStar className="text-secondary"></FaStar>
+                        (i: number, idx: number) => <FaStar className="text-orange-600"></FaStar>
                      )}
                   {reviews &&
                      [...Array(5 - reviews).keys()].map(
@@ -39,7 +42,7 @@ const TestimonialCard = ({
                </p>
             </div>
          </div>
-         <p  className="text-sm ps-24 ">{summery}</p>
+         <p  className="text-lg ps-24 ">{summery}</p>
       </article>
    );
 };

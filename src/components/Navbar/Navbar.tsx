@@ -19,7 +19,7 @@ const Navbar = () => {
             }  text-accent  `}
          >
             <ul
-               className={`flex  md:flex-row flex-col items-center md:justify-end gap-4 font-medium capitalize text-accent`}
+               className={`flex text-2xl  md:flex-row flex-col items-center md:justify-end gap-4 font-medium capitalize text-accent`}
             >
                <li className="hover:text-secondary duration-1000 text-accent">
                   <Link to="/home">Home</Link>

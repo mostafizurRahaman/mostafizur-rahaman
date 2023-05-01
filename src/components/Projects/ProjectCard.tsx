@@ -35,18 +35,18 @@ const ProjectCard = ({
                />
             </div>
             <div className="">
-               <h4 className="text-2xl font-bold mt-3 uppercase text-secondary ">
+               <h4 className="text-4xl font-bold mt-3 uppercase text-secondary ">
                   {name}
                </h4>
-               <small className="text-base mt-[-5px]  text-blue-500 block">
+               <small className="text-xl md:text-2xl mt-[-5px]  text-blue-500 block">
                   {subTitle}
                </small>
             </div>
 
             <div className="">
-               <p className="my-5 text-sm ">{summery.slice(0, 100)}...</p>
+               <p className="my-3 mb-5 text-lg ">{summery.slice(0, 100)}...</p>
 
-               <div className="flex  text-sm  rounded-lg gap-1 flex-wrap bg-primary  p-2">
+               <div className="flex  text-lg bg:opacity-80  rounded-lg gap-1 flex-wrap bg-black  p-2">
                   {technology?.slice(0, 5).map((i: string, idx: number) => (
                      <p
                         className={`${idx % 2 === 0 && "text-secondary"} ${
@@ -85,7 +85,7 @@ const ProjectCard = ({
                      </a>
                   </div>
                   <div>
-                     <button className="px-3 capitalize   py-1 bg-blue-500 font-medium text-white rounded-lg ">
+                     <button className="px-3 capitalize text-xl  py-1 bg-blue-500 font-medium text-white rounded-lg ">
                         more details 
                      </button>
                   </div>
