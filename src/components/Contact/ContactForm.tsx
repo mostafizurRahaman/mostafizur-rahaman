@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
 import Headings from "../Shared/Headings";
 import InputBox from "../Shared/InputBox";
 import { ChangeEvent, FormEvent, useState, useRef } from "react";
 import TextArea from "../Shared/TextArea";
 import SubmitButton from "../Shared/SubmitButton";
+import ContactInfo from "./ContactInfo";
 
 interface formValue {
    name: string;
@@ -119,62 +119,74 @@ const ContactForm = () => {
    return (
       <section id="contact" className="bg-primary px-10 pb-10">
          <Headings content="Contact me"></Headings>
-         <form
-            onSubmit={onSubmit}
-            className="w-full flex flex-col gap-5 mt-10"
-            ref={formRef}
-         >
-            <div className="flex items-center gap-5 w-full justify-center">
-               <InputBox
-                  onChange={handleName}
-                  title="Your name"
-                  type="text"
-                  error={errors.name}
-                  name="name"
-               ></InputBox>
-               <InputBox
-                  onChange={handleNumber}
-                  title="Your Phone"
-                  type="text"
-                  error={errors.phone}
-                  name="phone"
-               ></InputBox>
+         <div className="flex gap-10 items-start mt-10 md:flex-row flex-col ">
+            <div className="md:w-1/3 w-full ">
+               <ContactInfo></ContactInfo>
             </div>
-            <div className="flex flex-col gap-5">
-               <InputBox
-                  onChange={handleEmail}
-                  title="Your email"
-                  type="email"
-                  error={errors.email}
-                  name="email"
-               ></InputBox>
-               <InputBox
-                  onChange={handleSubject}
-                  title="Your Subject"
-                  type="text"
-                  error={errors.subject}
-                  name="subject"
-               ></InputBox>
-               <TextArea
-                  onChange={handleDescription}
-                  title="Your Message"
-                  name="message"
-                  cols={10}
-                  rows={5}
-                  error={errors.message}
-               ></TextArea>
-               {errors?.general && (
-                  <div className="my-3 flex items-center justify-center ">
-                     <p className="py-2 px-3 text-white flex items-center justify-center text-xl  bg-secondary bg-opacity-50 rounded-lg w-1/2">
-                        {errors?.general}
-                     </p>
-                  </div>
-               )}
-               <SubmitButton
-                  disabled={!name || !email || !message || !subject || !phone}
-               ></SubmitButton>
-            </div>
-         </form>
+            <form
+               onSubmit={onSubmit}
+               className="w-full flex flex-col gap-5 p-5 rounded-xl  bg-info"
+               ref={formRef}
+            >
+               <div>
+                  <h3 className="text-4xl font-bold capitalize text-accent text-center">
+                     Let's work together
+                  </h3>
+               </div>
+               <div className="flex items-center md:flex-row flex-col  gap-5 w-full justify-center">
+                  <InputBox
+                     onChange={handleName}
+                     title="Your name"
+                     type="text"
+                     error={errors.name}
+                     name="name"
+                  ></InputBox>
+                  <InputBox
+                     onChange={handleNumber}
+                     title="Your Phone"
+                     type="text"
+                     error={errors.phone}
+                     name="phone"
+                  ></InputBox>
+               </div>
+               <div className="flex flex-col gap-5">
+                  <InputBox
+                     onChange={handleEmail}
+                     title="Your email"
+                     type="email"
+                     error={errors.email}
+                     name="email"
+                  ></InputBox>
+                  <InputBox
+                     onChange={handleSubject}
+                     title="Your Subject"
+                     type="text"
+                     error={errors.subject}
+                     name="subject"
+                  ></InputBox>
+                  <TextArea
+                     onChange={handleDescription}
+                     title="Your Message"
+                     name="message"
+                     cols={10}
+                     rows={5}
+                     error={errors.message}
+                  ></TextArea>
+                  {errors?.general && (
+                     <div className="my-3 flex items-center justify-center ">
+                        <p className="py-2 px-3 text-white flex items-center justify-center text-xl  bg-secondary bg-opacity-50 rounded-lg w-1/2">
+                           {errors?.general}
+                        </p>
+                     </div>
+                  )}
+                  <SubmitButton
+                     disabled={
+                        !name || !email || !message || !subject || !phone
+                     }
+                  ></SubmitButton>
+               </div>
+            </form>
+         </div>
       </section>
    );
 };
