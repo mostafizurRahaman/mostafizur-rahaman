@@ -45,10 +45,7 @@ const Banner = () => {
                </p>
                <div className="flex md:flex-row flex-col  items-center gap-5">
                   <div className="flex gap-5">
-                     <PrimaryButton content="Resume">
-                        <BsCloudDownload></BsCloudDownload>
-                     </PrimaryButton>
-                     <PrimaryButton content="CV">
+                     <PrimaryButton fileName="Mostafizur_Rahaman_Resume" path="./resume.pdf" content="Download Resume">
                         <BsCloudDownload></BsCloudDownload>
                      </PrimaryButton>
                   </div>

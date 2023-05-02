@@ -1,8 +1,6 @@
 import SocialTemplate from "../Shared/SocialTemplate";
 
 import mostafizurRahaman from "../../assets/mostafizur.png";
-import wave from "../../assets/wave.svg";
-import styles from "./Footer.module.css";
 
 const Footer = () => {
    return (

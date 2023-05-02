@@ -50,7 +50,7 @@ const About = () => {
                   catalogue I have a reputation as being fast learner.
                </p>
                <div className="flex items-center justify-center my-6">
-                  <PrimaryButton content="download My cv">
+                  <PrimaryButton path="./cv.pdf" fileName="Mostafizur_Rahaman_CV"  content="download My cv">
                      <BsDownload></BsDownload>
                   </PrimaryButton>
                </div>
