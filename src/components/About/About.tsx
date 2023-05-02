@@ -27,7 +27,7 @@ const About = () => {
                      <img
                         src={mostafizur}
                         alt=""
-                        className={` rounded-lg ${styles.bannerImage}`}
+                        className={` rounded-lg ${styles.bannerImage} ${styles.img}`}
                      />
                   </div>
                </div>

@@ -6,7 +6,7 @@ const Experience = () => {
       <section id="experience" className="bg-primary px-5 md:px-10 ">
          <Headings content="Experience"></Headings>
          <div className="flex  md:flex-row flex-col items-center justify-between ">
-            <div className="flex flex-col gap-20 border-l-2 border-accent my-10 ">
+            <div className="flex flex-col gap-20 border-l-4 border-black my-10 ">
                <ExperienceCard
                   content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur quidem, nobis quam cum dolor perspiciatis sequi ipsum nisi sed reiciendis."
                   starting={2015}
@@ -22,7 +22,7 @@ const Experience = () => {
                   institute="Bamni Adarsha High School"
                ></ExperienceCard>
             </div>
-            <div className="flex flex-col gap-20 border-l-2 border-accent my-10">
+            <div className="flex flex-col gap-20 border-l-4 border-black my-10">
                <ExperienceCard
                   content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur quidem, nobis quam cum dolor perspiciatis sequi ipsum nisi sed reiciendis."
                   starting={2015}

@@ -1,10 +1,19 @@
-.bannerImage1:hover, .bannerImage{
+.bannerImage{
    box-shadow:inset  -7px -7px 14px #191b1e,
     inset 7px 7px 14px #292d32;
 
 }
-.bannerImage:hover, .bannerImage1{
+ .bannerImage1{
    box-shadow: -7px -7px 14px #191b1e,
     7px 7px 14px #292d32;
+    
 
+}
+
+
+.img{
+    background-image: url('../../assets/image_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }

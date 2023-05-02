@@ -57,12 +57,12 @@ const Banner = () => {
             </div>
          </div>
          <div className={`md:w-2/5 flex items-center justify-center w-full`}>
-            <div className={`${styles.bannerImage1} w-[65%]  rounded-lg  `}>
+            <div className={`${styles.bannerImage1} w-[75%]  rounded-lg  `}>
                <div className={`p-3  rounded-lg `}>
                   <img
                      src={mostafizurImage}
                      alt="mostafizur-rahaman-image"
-                     className={` ${styles.bannerImage} hover:bg-secondary rounded-lg duration-1000   `}
+                     className={` ${styles.bannerImage} ${styles.img}  rounded-lg duration-1000   `}
                   />
                </div>
             </div>
