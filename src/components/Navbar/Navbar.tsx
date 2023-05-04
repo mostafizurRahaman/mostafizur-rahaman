@@ -14,7 +14,7 @@ const Navbar = () => {
             className="ml-5 w-14 h-14 rounded-full border-2 border-secondary"
          />
          <div
-            className={`md:static absolute w-1/2 bg-primary md:bg-transparent  h-screen md:w-auot md:h-auto top-20 md:py-0 py-5 ${
+            className={`md:static absolute w-1/2  bg-primary md:bg-transparent  h-screen md:w-auto md:h-auto top-20 md:py-0 py-5 ${
                show ? "left-0" : " left-[-999999px] "
             }  text-accent  `}
          >
@@ -45,6 +45,12 @@ const Navbar = () => {
                )}
                <li className="hover:text-secondary duration-1000 text-accent">
                   <Link to="/videos">vidoes</Link>
+               </li>
+               <li className="hover:text-secondary duration-1000 text-accent">
+                  <Link to="/user/sign-up">sign Up</Link>
+               </li>
+               <li className="hover:text-secondary duration-1000 text-accent">
+                  <Link to="/user/sign-in">sign In</Link>
                </li>
             </ul>
          </div>

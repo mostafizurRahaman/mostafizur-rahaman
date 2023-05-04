@@ -180,6 +180,7 @@ const ContactForm = () => {
                      </div>
                   )}
                   <SubmitButton
+                     content="send message"
                      disabled={
                         !name || !email || !message || !subject || !phone
                      }

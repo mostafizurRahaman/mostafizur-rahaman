@@ -12,7 +12,7 @@ import styles from './InputBox.module.css';
 const InputBox = ({ type, name, error, title, onChange }: InputType) => {
    return (
       <div className="flex flex-col gap-3 w-full">
-         <label className="text-xl  font-bold capitalize text-accent" htmlFor={name}>
+         <label className="text-xl   font-bold capitalize text-accent" htmlFor={name}>
             {title}
          </label>
          <input
@@ -23,7 +23,7 @@ const InputBox = ({ type, name, error, title, onChange }: InputType) => {
             required
             onChange={onChange}
          />
-         <p className="text-secondary text-xl ps-5 capitalize mt-[-12px]">{error && error}</p>
+         <p className="text-secondary text-xl ps-5  mt-[-12px]">{error && error}</p>
       </div>
    );
 };
