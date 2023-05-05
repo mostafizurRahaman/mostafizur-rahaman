@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import Headings from "../components/Shared/Headings";
 import InputBox from "../components/Shared/InputBox";
 import { ChangeTypeInput } from "../configs/Type";
@@ -8,6 +8,8 @@ import SubmitButton from "../components/Shared/SubmitButton";
 import { FormSubmitType } from "../configs/Type";
 import CheckBox from "../components/Shared/Checkbox/CheckBox";
 import { Link } from "react-router-dom";
+import { useFormContext } from "react-hook-form";
+import { AuthContext } from "../Context/AuthProvider";
 interface formData {
    firstName: string;
    lastName: string;
@@ -20,6 +22,7 @@ interface formData {
 }
 
 const SignUp = () => {
+   const {createUser} = useContext(AuthContext); 
    const [formData, setFormData] = useState<formData>({
       firstName: "",
       lastName: "",
@@ -189,8 +192,15 @@ const SignUp = () => {
       }
    };
    const onSubmit: FormSubmitType = (e) => {
+      console.log(formData);
          e.preventDefault(); 
-         console.log("Final Data ",formData); 
+         createUser(email, password)
+         .then(data => {
+            const user = data.user; 
+            console.log(user); 
+         })
+         .catch(err => console.log(err))
+
    };
    console.log("f", formData, "e", errors);
    return (
