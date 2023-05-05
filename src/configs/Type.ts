@@ -30,3 +30,32 @@ export type useTokenType = (email: any) => {
    token: string;
    tokenLoading: boolean;
 }
+
+export interface projectCardType {
+   name: string;
+   subTitle: string;
+   client: string;
+   server: string;
+   live: string;
+   summery: string;
+   description:string; 
+   technology: string[];
+   thumbnail:string; 
+   image1:string; 
+   image2:string; 
+   image3:string; 
+}
+export interface ProjectErrorType  {
+   name: string;
+   subTitle: string;
+   client: string;
+   server: string;
+   live: string;
+   summery: string;
+   description:string; 
+   technology :"", 
+   thumbnail:string; 
+   image1:string; 
+   image2:string; 
+   image3:string;
+}

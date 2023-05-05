@@ -7,6 +7,7 @@ import UserLayout from "../Layout/DashboardLayout";
 import Videos from "../pages/Videos";
 import SignIn from "../pages/SignIn";
 import Profile from "../components/Dashboard/Profile/Profile";
+import AddProjects from "../components/Dashboard/AddPojects/AddProjects";
 
 export const routes = createBrowserRouter([
    {
@@ -43,6 +44,10 @@ export const routes = createBrowserRouter([
          {
             path:'/dashboard/', 
             element: <Profile></Profile>
+         },
+         {
+            path:'/dashboard/add-project', 
+            element: <AddProjects></AddProjects>
          }
       ]
    },
