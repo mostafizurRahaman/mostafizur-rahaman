@@ -10,8 +10,8 @@ export type logOutType   = () => Promise<void>
 export type AddInfoProfileType =  (profile: ProfileType) => Promise<void>
 
 export interface authInfoType {
-   user: User;
-   setUser: React.Dispatch<React.SetStateAction<User>>;
+   user: User | null; 
+   setUser: React.Dispatch<React.SetStateAction<User | null>>;
    createUser: createUserType, 
    LogIn: createUserType, 
    loading: boolean; 

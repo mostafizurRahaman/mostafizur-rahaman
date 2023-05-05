@@ -1,5 +1,6 @@
 import About from "../components/About/About";
 import Banner from "../components/Banner/Banner";
+import ContactForm from "../components/Contact/ContactForm";
 import Experience from "../components/Experience/Experience";
 import Projects from "../components/Projects/Projects";
 import Skills from "../components/Skills/Skills";
@@ -14,6 +15,7 @@ const Home = () => {
          <Experience></Experience>
          <Projects></Projects>
          <Testimonials></Testimonials>
+         <ContactForm></ContactForm>
       </>
    );
 };

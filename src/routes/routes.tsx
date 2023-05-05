@@ -3,9 +3,10 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home";
 
 import SignUp from "../pages/SignUp";
-import UserLayout from "../Layout/UserLayout";
+import UserLayout from "../Layout/DashboardLayout";
 import Videos from "../pages/Videos";
 import SignIn from "../pages/SignIn";
+import Profile from "../components/Dashboard/Profile/Profile";
 
 export const routes = createBrowserRouter([
    {
@@ -24,21 +25,25 @@ export const routes = createBrowserRouter([
             path: "/videos",
             element: <Videos></Videos>,
          },
+         {
+            path: "/sign-up",
+            element: <SignUp></SignUp>,
+         },
+         {
+            path: "/sign-in",
+            element: <SignIn></SignIn>, 
+         },
       ],
    },
 
    {
-      path: "/user",
+      path: "/dashboard",
       element: <UserLayout></UserLayout>,
       children: [
          {
-            path: "/user/sign-up",
-            element: <SignUp></SignUp>,
-         },
-         {
-            path: "/user/sign-in",
-            element: <SignIn></SignIn>, 
-         },
-      ],
+            path:'/dashboard/', 
+            element: <Profile></Profile>
+         }
+      ]
    },
 ]);

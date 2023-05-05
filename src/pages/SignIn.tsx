@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { User } from "firebase/auth";
+import Loading from "../components/Shared/Loading/Loading";
 interface formDataType {
    email: string;
    password: string;
@@ -83,11 +84,7 @@ const SignIn = () => {
    };
 
    if (loading) {
-      return (
-         <div className=" fixed top-0 left-0 bg-transparent w-[100%] h-screen ">
-            <div className="w-10 h-10 border-5 animate-spin border-y-secondary border-x-accent absolute"></div>
-         </div>
-      );
+      return <Loading></Loading>
    }
 
    const onSubmit: FormSubmitType = async (e) => {
@@ -101,6 +98,8 @@ const SignIn = () => {
          });
       } catch (err: any) {
          console.log(err);
+      }finally{
+         setLoading(false); 
       }
    };
 

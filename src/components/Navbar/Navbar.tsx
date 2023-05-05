@@ -53,14 +53,14 @@ const Navbar = () => {
                <li className="hover:text-secondary duration-1000 text-accent">
                   <Link to="/videos">vidoes</Link>
                </li>
-               {user?.uid ? (
+               {user?.email  ? (
                   <>
                      <li className="hover:text-secondary duration-1000 text-accent">
-                        <Link to="/user/"> Profile</Link>
+                        <Link to="/dashboard/"> Profile</Link>
                      </li>
                      <li
                         onClick={() => {
-                           navigate("/user/sign-in");
+                           navigate("/sign-in");
                            logOut();
                         }}
                         className="hover:text-secondary duration-1000 text-accent"
@@ -71,10 +71,10 @@ const Navbar = () => {
                ) : (
                   <>
                      <li className="hover:text-secondary duration-1000 text-accent">
-                        <Link to="/user/sign-up">sign Up</Link>
+                        <Link to="/sign-up">sign Up</Link>
                      </li>
                      <li className="hover:text-secondary duration-1000 text-accent">
-                        <Link to="/user/sign-in">sign In</Link>
+                        <Link to="/sign-in">sign In</Link>
                      </li>
                   </>
                )}

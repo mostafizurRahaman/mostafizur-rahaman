@@ -5,6 +5,7 @@ import Cursor from "./components/Cursor/Cursor";
 function App() {
    return (
       <div>
+         
          <Cursor></Cursor>
          <RouterProvider router={routes}></RouterProvider>
       </div>

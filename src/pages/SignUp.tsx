@@ -10,6 +10,7 @@ import CheckBox from "../components/Shared/Checkbox/CheckBox";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { useToken } from "../hooks/useToken";
+import Loading from "../components/Shared/Loading/Loading";
 interface formData {
    firstName: string;
    lastName: string;
@@ -66,11 +67,7 @@ const SignUp = () => {
    }
 
    if (loading) {
-      return (
-         <div className=" fixed top-0 left-0 bg-transparent w-[100%] h-screen ">
-            <div className="w-10 h-10 border-5 animate-spin border-y-secondary border-x-accent absolute"></div>
-         </div>
-      );
+      return <Loading></Loading>;
    }
    const handleFirstName: ChangeTypeInput = (e) => {
       const firstName: string = e.target.value;
@@ -243,9 +240,12 @@ const SignUp = () => {
          const data = await res.json();
          if (data.acknowledged === true) {
             setCreatedEmail(email);
+            setLoading(false);
          }
-      } catch (err:any) {
+      } catch (err: any) {
          console.log(err);
+      } finally {
+         setLoading(false);
       }
    };
 

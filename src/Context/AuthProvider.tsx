@@ -30,7 +30,7 @@ const auth: Auth = getAuth(app);
 export const AuthContext = createContext({} as authInfoType);
 
 const AuthProvider = ({ children }: AuthProviderType) => {
-   const [user, setUser] = useState({} as User);
+   const [user, setUser] = useState<User | null>(null);
    const [loading, setLoading] = useState<boolean>(false);
 
    // create User
@@ -53,8 +53,8 @@ const AuthProvider = ({ children }: AuthProviderType) => {
 
    // logOut Function :
    const logOut: logOutType = () => {
-      setLoading(true);
       localStorage.removeItem("token");
+      setUser(null); 
       return signOut(auth);
    };
 
@@ -66,7 +66,7 @@ const AuthProvider = ({ children }: AuthProviderType) => {
             if (currentUser) {
                setUser(currentUser);
                setLoading(false);
-               console.log(currentUser);
+               console.log("onState" , currentUser);
             }
          }
       );
