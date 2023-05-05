@@ -7,16 +7,23 @@ import {
    getAuth,
    onAuthStateChanged,
    signInWithEmailAndPassword,
+   signOut,
    updateProfile,
 } from "firebase/auth";
 
 import app from "../configs/Firebase.config";
-import { AddInfoProfileType, ProfileType, authInfoType, createUserType } from "../configs/Type";
+import {
+   AddInfoProfileType,
+   ProfileType,
+   authInfoType,
+   createUserType,
+   logOutType,
+} from "../configs/Type";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface AuthProviderType {
    children: ReactNode;
 }
-
 
 const auth: Auth = getAuth(app);
 
@@ -38,12 +45,20 @@ const AuthProvider = ({ children }: AuthProviderType) => {
       return signInWithEmailAndPassword(auth, email, password);
    };
 
-   // updateProfile : 
-   const AddInfoProfile:AddInfoProfileType  =(profile:ProfileType) => {
-      return updateProfile(user, profile)
-   }
+   // updateProfile :
+   const AddInfoProfile: AddInfoProfileType = (profile: ProfileType) => {
+      const currentUser: User | null = auth.currentUser;
+      return updateProfile(currentUser as User, profile);
+   };
 
-   // User State cheacker : 
+   // logOut Function :
+   const logOut: logOutType = () => {
+      setLoading(true);
+      localStorage.removeItem("token");
+      return signOut(auth);
+   };
+
+   // User State cheacker :
    useEffect(() => {
       const unSubscribe: Unsubscribe = onAuthStateChanged(
          auth,
@@ -51,7 +66,7 @@ const AuthProvider = ({ children }: AuthProviderType) => {
             if (currentUser) {
                setUser(currentUser);
                setLoading(false);
-               console.log(currentUser); 
+               console.log(currentUser);
             }
          }
       );
@@ -64,9 +79,10 @@ const AuthProvider = ({ children }: AuthProviderType) => {
       setUser,
       createUser,
       LogIn,
-      loading, 
+      loading,
       setLoading,
-      AddInfoProfile
+      AddInfoProfile,
+      logOut,
    };
 
    return (

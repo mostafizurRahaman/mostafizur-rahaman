@@ -1,12 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import {
+   Link,
+   NavigateFunction,
+   useLocation,
+   useNavigate,
+} from "react-router-dom";
 import logo from "../../assets/mostafizur.png";
 import { TiThMenu } from "react-icons/ti";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 const Navbar = () => {
    const [show, setShow] = useState<boolean>(false);
    const { pathname } = useLocation();
-   console.log(pathname); 
+   const { user, logOut } = useContext(AuthContext);
+   const navigate: NavigateFunction = useNavigate();
    return (
       <div className="flex items-center justify-between h-20 bg-primary text-secondary px-5 md:px-10 border-b border-accent sticky top-0 w-full z-50 ">
          <img
@@ -24,7 +31,7 @@ const Navbar = () => {
                <li className="hover:text-secondary duration-1000 text-accent">
                   <Link to="/home">Home</Link>
                </li>
-               {(pathname === "/home" || pathname ==="/") && (
+               {(pathname === "/home" || pathname === "/") && (
                   <>
                      <li className="hover:text-secondary duration-1000 text-accent">
                         <a href="#about">About</a>
@@ -46,12 +53,31 @@ const Navbar = () => {
                <li className="hover:text-secondary duration-1000 text-accent">
                   <Link to="/videos">vidoes</Link>
                </li>
-               <li className="hover:text-secondary duration-1000 text-accent">
-                  <Link to="/user/sign-up">sign Up</Link>
-               </li>
-               <li className="hover:text-secondary duration-1000 text-accent">
-                  <Link to="/user/sign-in">sign In</Link>
-               </li>
+               {user?.uid ? (
+                  <>
+                     <li className="hover:text-secondary duration-1000 text-accent">
+                        <Link to="/user/"> Profile</Link>
+                     </li>
+                     <li
+                        onClick={() => {
+                           navigate("/user/sign-in");
+                           logOut();
+                        }}
+                        className="hover:text-secondary duration-1000 text-accent"
+                     >
+                        Log Out
+                     </li>
+                  </>
+               ) : (
+                  <>
+                     <li className="hover:text-secondary duration-1000 text-accent">
+                        <Link to="/user/sign-up">sign Up</Link>
+                     </li>
+                     <li className="hover:text-secondary duration-1000 text-accent">
+                        <Link to="/user/sign-in">sign In</Link>
+                     </li>
+                  </>
+               )}
             </ul>
          </div>
          <div className="md:hidden text-3xl" onClick={() => setShow(!show)}>

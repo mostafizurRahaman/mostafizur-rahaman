@@ -7,9 +7,9 @@ import ImageUpload from "./../components/ImageUpload/imageUpload";
 import SubmitButton from "../components/Shared/SubmitButton";
 import { FormSubmitType } from "../configs/Type";
 import CheckBox from "../components/Shared/Checkbox/CheckBox";
-import { Link } from "react-router-dom";
-import { useFormContext } from "react-hook-form";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
+import { useToken } from "../hooks/useToken";
 interface formData {
    firstName: string;
    lastName: string;
@@ -18,11 +18,23 @@ interface formData {
    password: string;
    confirm: string;
    image: string;
+   date?: string;
    general?: string;
 }
 
+interface singupUser {
+   firstName: string;
+   lastName: string;
+   phone: string;
+   email: string;
+   image: string;
+   date: string;
+}
+
 const SignUp = () => {
-   const {createUser} = useContext(AuthContext); 
+   const { createUser, AddInfoProfile } = useContext(AuthContext);
+   const navigate: NavigateFunction = useNavigate();
+   const [loading, setLoading] = useState<boolean>(false);
    const [formData, setFormData] = useState<formData>({
       firstName: "",
       lastName: "",
@@ -42,10 +54,24 @@ const SignUp = () => {
       image: "",
       general: "",
    });
-   const formRef = useRef(null)
+   const [createdEmail, setCreatedEmail] = useState<string>("");
+   const { token, tokenLoading } = useToken(createdEmail);
+   const formRef = useRef(null);
    const [checked, setChecked] = useState<boolean>(false);
    const { firstName, lastName, email, phone, password, confirm, image } =
       formData;
+
+   if (token) {
+      navigate("/home");
+   }
+
+   if (loading) {
+      return (
+         <div className=" fixed top-0 left-0 bg-transparent w-[100%] h-screen ">
+            <div className="w-10 h-10 border-5 animate-spin border-y-secondary border-x-accent absolute"></div>
+         </div>
+      );
+   }
    const handleFirstName: ChangeTypeInput = (e) => {
       const firstName: string = e.target.value;
       if (firstName.length === 0) {
@@ -191,18 +217,57 @@ const SignUp = () => {
          }
       }
    };
-   const onSubmit: FormSubmitType = (e) => {
-      console.log(formData);
-         e.preventDefault(); 
-         createUser(email, password)
-         .then(data => {
-            const user = data.user; 
-            console.log(user); 
-         })
-         .catch(err => console.log(err))
 
+   const saveUser = async () => {
+      const date: Date = new Date();
+      const time: string = date.toISOString();
+      console.log(time);
+      const newUser: singupUser = {
+         firstName,
+         lastName,
+         image,
+         phone,
+         email,
+         date: time,
+      };
+
+      try {
+         const res = await fetch("http://localhost:5000/user", {
+            method: "post",
+            headers: {
+               "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+         });
+
+         const data = await res.json();
+         if (data.acknowledged === true) {
+            setCreatedEmail(email);
+         }
+      } catch (err:any) {
+         console.log(err);
+      }
    };
-   console.log("f", formData, "e", errors);
+
+   // Form Submission:
+   const onSubmit: FormSubmitType = (e) => {
+      setLoading(true);
+      e.preventDefault();
+      createUser(email, password)
+         .then((data) => {
+            if (data?.user?.uid) {
+               AddInfoProfile({
+                  displayName: `${firstName} ${lastName}`,
+                  phoneNumber: phone,
+                  photoURL: image,
+               });
+               saveUser();
+               setLoading(false);
+            }
+         })
+         .catch((err) => console.log(err));
+   };
+
    return (
       <section className="py-10 px-5 md:px-10 bg-primary  ">
          <Headings content="Sign Up"></Headings>
@@ -266,13 +331,16 @@ const SignUp = () => {
                   ></ImageUpload>
                </div>
                <div className="col-span-2 flex items-center justify-center flex-col ">
-                  <CheckBox
-                     checked={checked}
-                     setChecked={setChecked}
-                  >
-                    <p className="flex text-xl text-accent  items-center justify-center gap-2 capitalize  ">
-                      agree with our <Link className="text-secondary" to="/terms-&-services ">terms & services </Link>
-                    </p>
+                  <CheckBox checked={checked} setChecked={setChecked}>
+                     <p className="flex text-xl text-accent  items-center justify-center gap-2 capitalize  ">
+                        agree with our{" "}
+                        <Link
+                           className="text-secondary"
+                           to="/terms-&-services "
+                        >
+                           terms & services{" "}
+                        </Link>
+                     </p>
                   </CheckBox>
                   <SubmitButton
                      disabled={

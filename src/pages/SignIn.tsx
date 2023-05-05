@@ -1,10 +1,19 @@
 import Headings from "../components/Shared/Headings";
 import InputBox from "../components/Shared/InputBox";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { ChangeTypeInput } from "../configs/Type";
 import SubmitButton from "../components/Shared/SubmitButton";
 import signUp from "../assets/signup.png";
 import { FormSubmitType } from "../configs/Type";
+import { useToken } from "../hooks/useToken";
+import {
+   useLocation,
+   Location,
+   useNavigate,
+   NavigateFunction,
+} from "react-router-dom";
+import { AuthContext } from "../Context/AuthProvider";
+import { User } from "firebase/auth";
 interface formDataType {
    email: string;
    password: string;
@@ -20,7 +29,18 @@ const SignIn = () => {
       password: "",
       general: "",
    });
+   const [loading, setLoading] = useState<boolean>(false);
+   const [createdEmail, setCreatedEmail] = useState<string>("");
+   const { token } = useToken(createdEmail);
+   const location: Location = useLocation();
+   const from = location?.state?.from?.pathname || "/";
+   const navigate: NavigateFunction = useNavigate();
+   const { LogIn } = useContext(AuthContext);
    const formRef = useRef(null);
+   if (token) {
+      navigate(from, { replace: true });
+   }
+
    const handleEmail: ChangeTypeInput = (e) => {
       const email: string = e.target.value;
       if (email === "") {
@@ -62,9 +82,26 @@ const SignIn = () => {
       }
    };
 
-   const onSubmit: FormSubmitType = (e) => {
+   if (loading) {
+      return (
+         <div className=" fixed top-0 left-0 bg-transparent w-[100%] h-screen ">
+            <div className="w-10 h-10 border-5 animate-spin border-y-secondary border-x-accent absolute"></div>
+         </div>
+      );
+   }
+
+   const onSubmit: FormSubmitType = async (e) => {
       e.preventDefault();
-      console.log(formData);
+      setLoading(true);
+      try {
+         LogIn(formData.email, formData.password).then((res) => {
+            const user: User = res.user;
+            user.email && setCreatedEmail(user?.email);
+            setLoading(false);
+         });
+      } catch (err: any) {
+         console.log(err);
+      }
    };
 
    return (
