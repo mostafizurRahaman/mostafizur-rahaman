@@ -19,7 +19,6 @@ import {
    createUserType,
    logOutType,
 } from "../configs/Type";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface AuthProviderType {
    children: ReactNode;

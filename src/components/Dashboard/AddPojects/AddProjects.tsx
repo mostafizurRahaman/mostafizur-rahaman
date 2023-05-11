@@ -1,8 +1,9 @@
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import InputBox from "../../Shared/InputBox";
 import {
    ChangeTypeInput,
    ChangeTypeTextArea,
+   FormSubmitType,
    ProjectErrorType,
    projectCardType,
 } from "../../../configs/Type";
@@ -11,8 +12,11 @@ import TextArea from "../../Shared/TextArea";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import styles from "../Profile/Profile.module.css";
+
 const AddProjects = () => {
    const [technology, setTechnology] = useState<string[]>([]);
+   const formRef = useRef(null);
+
    const [project, setProject] = useState<projectCardType>({
       name: "",
       subTitle: "",
@@ -26,6 +30,11 @@ const AddProjects = () => {
       image1: "",
       image2: "",
       image3: "",
+      feature1: "",
+      feature2: "",
+      feature3: "",
+      feature4: "",
+      features: [],
    });
    const [errors, setErrors] = useState<ProjectErrorType>({
       name: "",
@@ -40,6 +49,10 @@ const AddProjects = () => {
       image1: "",
       image2: "",
       image3: "",
+      feature1: "",
+      feature2: "",
+      feature3: "",
+      feature4: "",
    });
 
    const technology1: string[] = [
@@ -60,7 +73,7 @@ const AddProjects = () => {
    ];
    const handleName: ChangeTypeInput = (e) => {
       const name: string = e.target.value;
-      if (name.length < 0) {
+      if (name.length <= 0) {
          setErrors({ ...errors, name: "name shouldn't be empty " });
          setProject({ ...project, name: "" });
       } else {
@@ -171,13 +184,42 @@ const AddProjects = () => {
       setTechnology(newTech);
       project.technology = newTech;
    };
-   console.log("p", project.technology);
-   console.log("t", technology);
+
+   const handleFeatures: ChangeTypeInput = (e) => {
+      const name: string = e.target.name;
+      const value: string = e.target.value;
+      if (value.length < 50) {
+         setErrors({ ...errors, [name]: "feature lenth must be 50 character" });
+         setProject({ ...project, [name]: "" });
+      } else {
+         setErrors({ ...errors, [name]: "" });
+         setProject({ ...project, [name]: value });
+      }
+   };
+
+   const handleSubmit: FormSubmitType = (e) => {
+      e.preventDefault();
+      const { feature1, feature2, feature3, feature4 } = project;
+      if (feature1 && feature2 && feature3 && feature4) {
+         setProject({
+            ...project,
+            features: [feature1, feature2, feature3, feature4],
+         });
+      }
+      console.log(project); 
+
+   };
+   console.log('p', project); 
+   console.log('e', errors);
    return (
       <div>
          <div>
             <Headings content="Add Your Poject"></Headings>
-            <form className="grid md:grid-cols-2 grid-cols-1 px-10 gap-5 mt-5">
+            <form
+               onSubmit={handleSubmit}
+               ref={formRef}
+               className="grid md:grid-cols-2 grid-cols-1 px-10 gap-5 mt-5"
+            >
                <InputBox
                   type="text"
                   name="name"
@@ -213,6 +255,36 @@ const AddProjects = () => {
                      error={errors.live}
                      title="Live Link"
                      onChange={handleURL}
+                  ></InputBox>
+               </div>
+               <div className="grid md:grid-cols-2 grid-cols-1 gap-5 col-span-2">
+                  <InputBox
+                     type="text"
+                     name="feature1"
+                     title={`feature 1`}
+                     error={errors?.feature1 && errors?.feature1}
+                     onChange={handleFeatures}
+                  ></InputBox>
+                  <InputBox
+                     type="text"
+                     name="feature2"
+                     title={`feature 2`}
+                     error={errors?.feature2 && errors?.feature2}
+                     onChange={handleFeatures}
+                  ></InputBox>
+                  <InputBox
+                     type="text"
+                     name="feature3"
+                     title={`feature 3`}
+                     error={errors?.feature3 && errors?.feature3}
+                     onChange={handleFeatures}
+                  ></InputBox>
+                  <InputBox
+                     type="text"
+                     name="feature4"
+                     title={`feature 4`}
+                     error={errors?.feature4 && errors?.feature4}
+                     onChange={handleFeatures}
                   ></InputBox>
                </div>
                <TextArea
@@ -320,7 +392,11 @@ const AddProjects = () => {
                         !project?.image1 ||
                         !project?.image2 ||
                         !project?.image3 ||
-                        !(project?.technology.length === 5)
+                        !(project?.technology.length >= 5) ||
+                        !project.feature1 ||
+                        !project.feature2 ||
+                        !project.feature3 ||
+                        !project.feature4
                      }
                      content="Add"
                   ></SubmitButton>
