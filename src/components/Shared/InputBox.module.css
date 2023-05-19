@@ -1,15 +1,11 @@
-.input{
-   box-shadow: inset 5px 5px 5px #1a1c20,
-   inset -5px -5px 14px #282c30;
-   
+.input {
+   box-shadow: inset 5px 5px 5px #1a1c20, inset -5px -5px 14px #282c30;
 }
-.button{
-   box-shadow:  5px 5px 5px #1a1c20,
-    -5px -5px 14px #282c30;   
+.button {
+   box-shadow: 5px 5px 5px #1a1c20, -5px -5px 14px #282c30;
 }
-.button:hover{
-   box-shadow:inset  5px 5px 5px #1a1c20,
-   inset -5px -5px 14px #282c30;
-   
+.button:hover {
+   box-shadow: inset 5px 5px 5px #1a1c20, inset -5px -5px 14px #282c30;
 }
+
 

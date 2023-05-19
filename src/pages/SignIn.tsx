@@ -33,12 +33,14 @@ const SignIn = () => {
    const [loading, setLoading] = useState<boolean>(false);
    const [createdEmail, setCreatedEmail] = useState<string>("");
    const { token } = useToken(createdEmail);
+   console.log(token); 
    const location: Location = useLocation();
    const from = location?.state?.from?.pathname || "/";
    const navigate: NavigateFunction = useNavigate();
    const { LogIn } = useContext(AuthContext);
    const formRef = useRef(null);
    if (token) {
+      console.log(token); 
       navigate(from, { replace: true });
    }
 

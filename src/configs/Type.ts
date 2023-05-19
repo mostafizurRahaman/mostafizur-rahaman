@@ -71,3 +71,28 @@ export interface ProjectErrorType {
    feature3: string;
    feature4: string;
 }
+
+
+export interface ExperienceType {
+   achivement: string; 
+   institute: string; 
+   description: string; 
+   documents: string; 
+   start: string; 
+   end: string; 
+   general?: string; 
+}
+
+
+export type skills = {
+   name: string; 
+   expertise: number; 
+   icon: string;  
+}
+
+export type SkillsError = {
+   name: string; 
+   expertise: string; 
+   icon: string; 
+   general?: string; 
+}

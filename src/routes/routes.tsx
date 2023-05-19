@@ -8,6 +8,8 @@ import Videos from "../pages/Videos";
 import SignIn from "../pages/SignIn";
 import Profile from "../components/Dashboard/Profile/Profile";
 import AddProjects from "../components/Dashboard/AddPojects/AddProjects";
+import AddExperiences from "../components/Dashboard/Experiences/AddExperiences";
+import AddSkills from "../components/Dashboard/AddSkills/AddSkills";
 
 export const routes = createBrowserRouter([
    {
@@ -48,6 +50,14 @@ export const routes = createBrowserRouter([
          {
             path:'/dashboard/add-project', 
             element: <AddProjects></AddProjects>
+         },
+         {
+            path:"/dashboard/experiences", 
+            element:<AddExperiences></AddExperiences>
+         },
+         {
+            path:"/dashboard/skills", 
+            element:<AddSkills></AddSkills>
          }
       ]
    },

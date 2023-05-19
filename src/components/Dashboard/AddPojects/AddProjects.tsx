@@ -12,11 +12,12 @@ import TextArea from "../../Shared/TextArea";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import styles from "../Profile/Profile.module.css";
+import { baseURL } from "../../../configs/configs";
 
 const AddProjects = () => {
    const [technology, setTechnology] = useState<string[]>([]);
-   const formRef = useRef(null);
-
+   const formRef = useRef<HTMLFormElement>(null);
+   console.log(baseURL);
    const [project, setProject] = useState<projectCardType>({
       name: "",
       subTitle: "",
@@ -144,7 +145,7 @@ const AddProjects = () => {
          setProject({ ...project, description: description });
       }
    };
-   const handleUpload: ChangeTypeInput = async (e) => {
+ const handleUpload: ChangeTypeInput = async (e) => {
       const name: string = e.target.name;
       if (e.target.files) {
          const rowImage: any = e.target.files[0];
@@ -197,7 +198,7 @@ const AddProjects = () => {
       }
    };
 
-   const handleSubmit: FormSubmitType = (e) => {
+   const handleSubmit: FormSubmitType = async (e) => {
       e.preventDefault();
       const { feature1, feature2, feature3, feature4 } = project;
       if (feature1 && feature2 && feature3 && feature4) {
@@ -206,11 +207,24 @@ const AddProjects = () => {
             features: [feature1, feature2, feature3, feature4],
          });
       }
-      console.log(project); 
+      console.log(project);
 
+      const res = await fetch(`${baseURL}projects`, {
+         method: "post",
+         headers: {
+            "content-type": "application/json",
+         },
+         body: JSON.stringify(project),
+      });
+
+      const data = await res.json();
+      if (data.acknowledged === true) {
+         formRef.current?.reset();
+         setProject({...project, image1:"", image2:"", image3:"", technology:[]}); 
+      }
    };
-   console.log('p', project); 
-   console.log('e', errors);
+   console.log("p", project);
+   console.log("e", errors);
    return (
       <div>
          <div>
@@ -398,7 +412,7 @@ const AddProjects = () => {
                         !project.feature3 ||
                         !project.feature4
                      }
-                     content="Add"
+                     content="Add Project"
                   ></SubmitButton>
                </div>
             </form>
