@@ -9,64 +9,21 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Grid, Pagination } from "swiper";
-interface review {
-   image: string;
-   name: string;
-   userName: string;
-   reviews: number;
-   summery: string;
-}
+import { TestimonialType } from "../../configs/Type";
+import { useEffect, useState } from "react";
+import { baseURL } from "../../configs/configs";
+
 const Testimonials = () => {
-   const reviews: review[] = [
-      {
-         image: "https://mostafizur-rahaman-fahim.netlify.app/static/media/author-imgae.1c08e9b3b91acf1af9b3.png",
-         name: "Mostafizur Rahaman",
-         userName: "mostafizurRahaman",
-         reviews: 2,
-         summery:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, totam.",
-      },
-      {
-         image: "https://mostafizur-rahaman-fahim.netlify.app/static/media/author-imgae.1c08e9b3b91acf1af9b3.png",
-         name: "Mostafizur Rahaman",
-         userName: "mostafizurRahaman",
-         reviews: 5,
-         summery:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, totam.",
-      },
-      {
-         image: "https://mostafizur-rahaman-fahim.netlify.app/static/media/author-imgae.1c08e9b3b91acf1af9b3.png",
-         name: "Mostafizur Rahaman",
-         userName: "mostafizurRahaman",
-         reviews: 3,
-         summery:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, totam.",
-      },
-      {
-         image: "https://mostafizur-rahaman-fahim.netlify.app/static/media/author-imgae.1c08e9b3b91acf1af9b3.png",
-         name: "Mostafizur Rahaman",
-         userName: "mostafizurRahaman",
-         reviews: 4,
-         summery:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, totam.",
-      },
-   ];
+   const [reviews , setReviews ] = useState<TestimonialType[]>([])
+   useEffect(()=>{
+      fetch(`${baseURL}testimonials`)
+      .then(res => res.json())
+      .then(data => setReviews(data))
+      .catch(err => console.log(err)); 
+   })
    return (
       <section id="testimonials" className="bg-primary py-16 px-10">
          <Headings content="Testimonials"></Headings>
-         {/* <div className="grid md:grid-cols-3 grid-cols-1 gap-5 my-10 ">
-             {
-               reviews?.map((i:review, idx:number)=> {
-                  return <TestimonialCard key={idx}
-                  image={i.image}
-                  name={i.name}
-                  userName={i.userName}
-                  reviews={i.reviews}
-                  summery={i.summery}
-               ></TestimonialCard>
-               })
-             }
-         </div> */}
          <Swiper
             //   slidesPerView={3}
             grid={{
@@ -91,7 +48,7 @@ const Testimonials = () => {
             modules={[Grid, Pagination]}
             className="mySwiper py-20 pb-10"
          >
-            {reviews?.map((i: review, idx: number) => {
+            {reviews?.map((i: TestimonialType, idx: number) => {
                return (
                   <SwiperSlide>
                      <TestimonialCard
@@ -100,7 +57,7 @@ const Testimonials = () => {
                         name={i.name}
                         userName={i.userName}
                         reviews={i.reviews}
-                        summery={i.summery}
+                        summery={i.message}
                      ></TestimonialCard>
                   </SwiperSlide>
                );

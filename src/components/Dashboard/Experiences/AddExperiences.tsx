@@ -6,12 +6,14 @@ import {
    ChangeTypeTextArea,
    ExperienceType,
    FormSubmitType,
+   ItemsType,
 } from "../../../configs/Type";
 import TextArea from "../../Shared/TextArea";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import InputDate from "../../Shared/InputDate";
 import SubmitButton from "../../Shared/SubmitButton";
 import { baseURL } from "../../../configs/configs";
+import SelectedMenu from "../../Shared/SelectedMenu/SelectedMenu";
 
 const AddExperiences = () => {
    const [experience, setExperience] = useState<ExperienceType>({
@@ -20,6 +22,8 @@ const AddExperiences = () => {
       description: "",
       documents: "",
       start: "",
+      category: "education",
+      status: "contineuous",
       end: "",
    });
    const [errors, setErrors] = useState({
@@ -32,7 +36,7 @@ const AddExperiences = () => {
       general: "",
    });
    const formRef = useRef<HTMLFormElement>(null);
-  
+
    const handleTextFields: ChangeTypeInput = (e) => {
       const name: string = e.target.name;
       const value: string = e.target.value;
@@ -85,83 +89,124 @@ const AddExperiences = () => {
          }
       }
    };
-   const handleStartDate:ChangeTypeInput = (e) => {
-      const start = e.target.value; 
-      console.log(start, new Date(start).getTime(), new Date(experience?.end).getTime()); 
-      if(start.length===0){
-         setErrors({...errors, start: 'start date shouldn\'t be empty'});
-         setExperience({...experience, start: ''}); 
-      }else{
-         if(experience?.end){
-            const startDate = new Date(start).getTime(); 
-            const endDate = new Date(experience?.end).getTime(); 
-            if(startDate <= endDate){
-               setErrors({...errors, start: '' })
-               setExperience({...experience, start: start})
-            }else{
-               setErrors({...errors, start: 'start date should be smaller then end date ' })
-               setExperience({...experience, start: ''})
+   const handleStartDate: ChangeTypeInput = (e) => {
+      const start = e.target.value;
+      if (start.length === 0) {
+         setErrors({ ...errors, start: "start date shouldn't be empty" });
+         setExperience({ ...experience, start: "" });
+      } else {
+         if (experience?.end) {
+            const startDate = new Date(start).getTime();
+            const endDate = new Date(experience?.end).getTime();
+            if (startDate <= endDate) {
+               setErrors({ ...errors, start: "" });
+               setExperience({ ...experience, start: start });
+            } else {
+               setErrors({
+                  ...errors,
+                  start: "start date should be smaller then end date ",
+               });
+               setExperience({ ...experience, start: "" });
             }
-         }else{
-            setErrors({...errors, start: '' })
-            setExperience({...experience, start: start})
+         } else {
+            setErrors({ ...errors, start: "" });
+            setExperience({ ...experience, start: start });
          }
       }
-      
-   }
-   const handleEndDate:ChangeTypeInput = (e) => {
-      const end = e.target.value; 
-      console.log(end, new Date(experience.start).getTime(), new Date(end).getTime());
-      if(end.length===0){
-         setErrors({...errors, end: 'end date shouldn\'t be empty'});
-         setExperience({...experience, end: ''}); 
-      }else{
-         if(experience?.start){
-            const startDate = new Date(experience?.start).getTime(); 
-            const endDate = new Date(end).getTime(); 
-            
-            if(startDate <= endDate){
-               setErrors({...errors, end: '' })
-               setExperience({...experience, end: end})
-            }else{
-               setErrors({...errors, end: 'end date should be larger then start date ' })
-               setExperience({...experience, end: ''})
-            }
-         }else{
-            setErrors({...errors, end: '' })
-            setExperience({...experience, end: end})
-         }
-      }
-      
-   }
+   };
+   const handleEndDate: ChangeTypeInput = (e) => {
+      const end = e.target.value;
+      if (end.length === 0) {
+         setErrors({ ...errors, end: "end date shouldn't be empty" });
+         setExperience({ ...experience, end: "" });
+      } else {
+         if (experience?.start) {
+            const startDate = new Date(experience?.start).getTime();
+            const endDate = new Date(end).getTime();
 
-   const handleSubmit:FormSubmitType = async(e) => {
-      e.preventDefault(); 
-      
+            if (startDate <= endDate) {
+               setErrors({ ...errors, end: "" });
+               setExperience({ ...experience, end: end });
+            } else {
+               setErrors({
+                  ...errors,
+                  end: "end date should be larger then start date ",
+               });
+               setExperience({ ...experience, end: "" });
+            }
+         } else {
+            setErrors({ ...errors, end: "" });
+            setExperience({ ...experience, end: end });
+         }
+      }
+   };
+
+   const handleSubmit: FormSubmitType = async (e) => {
+      e.preventDefault();
+
       const res = await fetch(`${baseURL}experiences`, {
-            method: "POST", 
-            headers: {
-               "content-type": 'application/json'
-            }, 
-            body: JSON.stringify(experience)
-         })
-      const data = await res.json(); 
-      console.log(data); 
-      if(data.acknowledged){
-          formRef.current?.reset()
-          setExperience({...experience, documents: ''}); 
-      }else{
-         setErrors({...errors, general: "data is not posted try again"})
+         method: "POST",
+         headers: {
+            "content-type": "application/json",
+         },
+         body: JSON.stringify(experience),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.acknowledged) {
+         formRef.current?.reset();
+         setExperience({ ...experience, documents: "" });
+      } else {
+         setErrors({ ...errors, general: "data is not posted try again" });
       }
-     
-     
-   }
+   };
 
-  
+   const categories: ItemsType[] = [
+      {
+         id: 1,
+         name: "education",
+      },
+      {
+         id: 2,
+         name: "course",
+      },
+      {
+         id: 3,
+         name: "work",
+      },
+      {
+         id: 4,
+         name: "internship",
+      },
+   ];
+
+   const status: ItemsType[] = [
+      {
+         id: 1,
+         name:"contineuous",
+      },
+      {
+         id: 2,
+         name: "end",
+      },
+   ];
+   
+   let isError:boolean; 
+   if(experience.status==="contineuous"){
+      isError = false; 
+   }else{
+      isError = errors.end ? true : false;  
+   }
+   console.log(experience); 
+
    return (
       <section>
          <Headings content="Add Experiences"></Headings>
-         <form onSubmit={handleSubmit} ref={formRef} className="grid md:grid-cols-2 grid-cols-1 gap-5 px-5 my-10">
+         <form
+            onSubmit={handleSubmit}
+            ref={formRef}
+            className="grid md:grid-cols-2 grid-cols-1 gap-5 px-5 my-10"
+         >
             <InputBox
                type="text"
                title="achivement"
@@ -176,12 +221,27 @@ const AddExperiences = () => {
                error={errors.institute}
                onChange={handleTextFields}
             ></InputBox>
+            <SelectedMenu
+               name="category"
+               title="category"
+               items={categories}
+               experience={experience}
+               setExperience={setExperience}
+            ></SelectedMenu>
+            <SelectedMenu
+               name="status"
+               title="Status"
+               items={status}
+               experience={experience}
+               setExperience={setExperience}
+            ></SelectedMenu>
             <InputDate
                name="start"
                title="start Date"
                error={errors.start}
                onChange={handleStartDate}
                max={experience.end && experience.end}
+               disabled={false}
             ></InputDate>
             <InputDate
                name="end"
@@ -189,6 +249,7 @@ const AddExperiences = () => {
                error={errors.end}
                onChange={handleEndDate}
                min={experience.start && experience.start}
+               disabled={experience.status === "contineuous" ? true : false}
             ></InputDate>
             <TextArea
                name="description"
@@ -213,12 +274,16 @@ const AddExperiences = () => {
                ></ImageUpload>
             </div>
             <div className="col-span-2">
-                  <SubmitButton
-                     disabled={!experience.start || !experience.end || !experience.description || !experience.achivement || !experience.documents
-                     }
-                     content="Add Experience"
-                  ></SubmitButton>
-               </div>
+               <SubmitButton
+                  disabled={
+                     !experience.start ||
+                     !experience.description ||
+                     !experience.achivement ||
+                     !experience.documents || isError
+                  }
+                  content="Add Experience"
+               ></SubmitButton>
+            </div>
          </form>
       </section>
    );

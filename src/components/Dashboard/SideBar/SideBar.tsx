@@ -23,6 +23,12 @@ const SideBar = () => {
          >
             Skills
          </Link>
+         <Link
+            className="w-full border-b-2 py-2 border-accent capitalize text-center"
+            to="/dashboard/testimonials"
+         >
+            Testimonials
+         </Link>
       </div>
    );
 };

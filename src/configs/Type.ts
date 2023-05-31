@@ -1,9 +1,9 @@
 import { User, UserCredential } from "firebase/auth";
 import { ChangeEvent, FormEvent } from "react";
-
 export type ChangeTypeInput = (e: ChangeEvent<HTMLInputElement>) => void;
 export type ChangeTypeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => void;
 export type FormSubmitType = (e: FormEvent<HTMLFormElement>) => void;
+export type SelectEvent = (e: ChangeEvent<HTMLSelectElement>) => void ;
 export type createUserType = (
    email: string,
    password: string
@@ -79,12 +79,25 @@ export interface ExperienceType {
    description: string; 
    documents: string; 
    start: string; 
-   end: string; 
+   end?: string; 
+   category:"education" | "work" | "internship" | "course"; 
+   status: "contineuous" | "end"; 
    general?: string; 
 }
 
 
+export interface ExperienceErrorType {
+   achivement: string;
+   institute: string;
+   description: string;
+   documents: string;
+   start: string;
+   end: string;
+   general?: string;
+}
+
 export type skills = {
+   _id?:string, 
    name: string; 
    expertise: number; 
    icon: string;  
@@ -95,4 +108,24 @@ export type SkillsError = {
    expertise: string; 
    icon: string; 
    general?: string; 
+}
+type image = {
+   image: string; 
+}
+export type TestimonialType = {
+   name: string;
+   userName: string;
+   reviews: number;
+   message: string;
+} & image; 
+export type TestimonialErrors = {
+   reviews: string; 
+   name: string;
+   userName: string;
+   message: string;
+} & image;
+
+export type ItemsType = {
+   id: number; 
+   name: string; 
 }

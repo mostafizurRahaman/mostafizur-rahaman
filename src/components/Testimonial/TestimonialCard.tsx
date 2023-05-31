@@ -42,7 +42,7 @@ const TestimonialCard = ({
                </p>
             </div>
          </div>
-         <p  className="text-lg ps-24 ">{summery}</p>
+         <p  className="text-lg ps-24 ">{summery.slice(0, 100)}...</p>
       </article>
    );
 };

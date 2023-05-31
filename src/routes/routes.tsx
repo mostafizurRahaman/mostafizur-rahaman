@@ -10,6 +10,7 @@ import Profile from "../components/Dashboard/Profile/Profile";
 import AddProjects from "../components/Dashboard/AddPojects/AddProjects";
 import AddExperiences from "../components/Dashboard/Experiences/AddExperiences";
 import AddSkills from "../components/Dashboard/AddSkills/AddSkills";
+import AddTestimonial from "../components/Dashboard/AddTestimonial/AddTestimonial";
 
 export const routes = createBrowserRouter([
    {
@@ -58,6 +59,10 @@ export const routes = createBrowserRouter([
          {
             path:"/dashboard/skills", 
             element:<AddSkills></AddSkills>
+         }, 
+         {
+            path: "/dashboard/testimonials", 
+            element: <AddTestimonial></AddTestimonial>
          }
       ]
    },
