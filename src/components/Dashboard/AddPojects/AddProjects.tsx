@@ -13,10 +13,12 @@ import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import styles from "../Profile/Profile.module.css";
 import { baseURL } from "../../../configs/configs";
+import { useNavigate, NavigateFunction} from "react-router-dom";
 
 const AddProjects = () => {
    const [technology, setTechnology] = useState<string[]>([]);
    const formRef = useRef<HTMLFormElement>(null);
+   const navigate: NavigateFunction= useNavigate(); 
    console.log(baseURL);
    const [project, setProject] = useState<projectCardType>({
       name: "",
@@ -145,7 +147,7 @@ const AddProjects = () => {
          setProject({ ...project, description: description });
       }
    };
- const handleUpload: ChangeTypeInput = async (e) => {
+   const handleUpload: ChangeTypeInput = async (e) => {
       const name: string = e.target.name;
       if (e.target.files) {
          const rowImage: any = e.target.files[0];
@@ -201,30 +203,39 @@ const AddProjects = () => {
    const handleSubmit: FormSubmitType = async (e) => {
       e.preventDefault();
       const { feature1, feature2, feature3, feature4 } = project;
+      console.log(feature1, feature2, feature3, feature4);
       if (feature1 && feature2 && feature3 && feature4) {
          setProject({
             ...project,
             features: [feature1, feature2, feature3, feature4],
          });
-      }
-      console.log(project);
 
-      const res = await fetch(`${baseURL}projects`, {
-         method: "post",
-         headers: {
-            "content-type": "application/json",
-         },
-         body: JSON.stringify(project),
-      });
+         if (project.features.length === 4) {
+            const res = await fetch(`${baseURL}projects`, {
+               method: "post",
+               headers: {
+                  "content-type": "application/json",
+               },
+               body: JSON.stringify(project),
+            });
 
-      const data = await res.json();
-      if (data.acknowledged === true) {
-         formRef.current?.reset();
-         setProject({...project, image1:"", image2:"", image3:"", technology:[]}); 
+            const data = await res.json();
+            if (data.acknowledged === true) {
+               setProject({
+                  ...project,
+                  image1: "",
+                  image2: "",
+                  image3: "",
+                  thumbnail:"",
+                  technology: [],
+               });
+               formRef.current?.reset();
+               console.log("after add", project);
+               navigate('/home')
+            }
+         }
       }
    };
-   console.log("p", project);
-   console.log("e", errors);
    return (
       <div>
          <div>
@@ -381,7 +392,7 @@ const AddProjects = () => {
                      >
                         <input
                            type="checkbox"
-                           checked={technology.includes(i)}
+                           checked={technology.includes(i) ? true : false}
                            value={i}
                            name="technology"
                            id={`tech${idx}`}

@@ -27,11 +27,11 @@ const ProjectCard = ({
          <div
             className={`text-accent bg-info p-5 rounded-lg  `}
          >
-            <div className="overflow-hidden">
+            <div className="overflow-hidden  rounded-md">
                <img
                   src={image}
                   alt={name}
-                  className="rounded-md h-44 hover:scale-[1.1] hover:rotate-6 duration-1000 "
+                  className="rounded-md object-cover object-top hover:object-bottom w-full h-44    duration-[3s] "
                />
             </div>
             <div className="">

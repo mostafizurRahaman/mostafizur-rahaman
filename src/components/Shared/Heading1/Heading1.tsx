@@ -6,7 +6,7 @@ interface headingType {
 const Heading1 =({title}: headingType)  => {
    return (
       <div className="flex items-center justify-center">
-         <h3 className="text-xl font-bold uppercase text-seondary  border-b-2 border-secondary  my-5 pb-3">{title}</h3>
+         <h3 className="text-2xl font-bold  text-seondary  border-b-2 border-white my-5 pb-1 text-white uppercase">{title}</h3>
       </div>
    );
 };``
