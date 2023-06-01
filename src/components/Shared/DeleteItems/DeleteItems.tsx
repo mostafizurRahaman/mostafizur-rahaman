@@ -16,7 +16,9 @@ const DeleteItems = ({_id, path, name}: DeleteItemsType) => {
    const {logOut} = useContext(AuthContext); 
    const navigate:NavigateFunction = useNavigate(); 
    const handleDelete = async() => {
-       const res = await fetch(`${baseURL}${path}:${_id}`, {
+      console.log(`${baseURL}${path}/${_id}`)
+       const res = await fetch(`${baseURL}${path}/${_id}`, {
+         method: 'delete', 
          headers: {
             'autorization': `bearer ${localStorage.getItem('token')}`,
          }
@@ -38,7 +40,7 @@ const DeleteItems = ({_id, path, name}: DeleteItemsType) => {
    }
 
    return (
-      <FiDelete onClick={handleDelete}  className=" hover:text-secondary duration-1000"></FiDelete>
+      <FiDelete onClick={handleDelete} className=" hover:text-secondary duration-1000"></FiDelete>
    );
 };
 

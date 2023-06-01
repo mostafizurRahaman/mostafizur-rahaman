@@ -82,11 +82,11 @@ const ProjectCard = ({project}:projectType ) => {
                         <FiLink></FiLink>{" "}
                      </a>
                      {
-                        _id && <DeleteItems 
+                       user?.email === "mostafizurrahaman0401@gmail.com" &&(  _id && <DeleteItems 
                                  _id={_id}
                                  name={name}
                                  path="projects"
-                              ></DeleteItems>
+                              ></DeleteItems>)
                      }
                      
                   </div>

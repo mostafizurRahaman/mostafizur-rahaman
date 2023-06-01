@@ -35,7 +35,8 @@ const Projects = () => {
    useEffect(()=>{
          getProjects(); 
    }, [])
-
+   
+ 
    return (
       <section id="portfolio" className="bg-primary py-16 px-10">
          <Headings content="My Projects"></Headings>
@@ -53,7 +54,7 @@ const Projects = () => {
                      slidesPerView: 2,
                   },
                   1024: {
-                     slidesPerView: 3,
+                     slidesPerView: 3 ,
                   },
                }}
                coverflowEffect={{

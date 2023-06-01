@@ -6,6 +6,7 @@ import { ChangeTypeInput, FormSubmitType, SkillsError, skills } from "../../../c
 import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import { baseURL } from "../../../configs/configs";
+import {  NavigateFunction, useNavigate } from "react-router-dom";
 
 const AddSkills = () => {
    const [skill, setSkill] = useState<skills>({
@@ -20,7 +21,7 @@ const AddSkills = () => {
    });
 
    const formRef = useRef<HTMLFormElement>(null)
-
+   const navigate: NavigateFunction = useNavigate(); 
    const handleName: ChangeTypeInput = (e) => {
       const name: string = e.target.value;
       if (name.length <= 0) {
@@ -93,6 +94,8 @@ const AddSkills = () => {
        if(data.acknowledged){
          console.log(data); 
          formRef?.current?.reset();
+         setSkill({...skill, icon:""}); 
+         navigate('/home#skills');
        }
    }
 
