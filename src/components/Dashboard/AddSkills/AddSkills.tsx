@@ -104,7 +104,7 @@ const AddSkills = () => {
    return (
       <div>
          <Headings content="Add skills"></Headings>
-         <form onSubmit={handleSubmit} ref={formRef} className="grid grid-cols-1 px-10 my-10  md:px-16 gap-5 md:grid-cols-2 ">
+         <form onSubmit={handleSubmit} ref={formRef} className="grid grid-cols-1 px-3  my-10  md:px-16 gap-5 md:grid-cols-2 ">
             <InputBox
                type="text"
                name="technology"

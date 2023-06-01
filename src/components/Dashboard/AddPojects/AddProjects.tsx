@@ -246,7 +246,7 @@ const AddProjects = () => {
             <form
                onSubmit={handleSubmit}
                ref={formRef}
-               className="grid md:grid-cols-2 grid-cols-1 px-10 gap-5 mt-5"
+               className="grid md:grid-cols-2 grid-cols-1 px-3 md:px-10 gap-5 mt-5"
             >
                <InputBox
                   type="text"
@@ -391,7 +391,7 @@ const AddProjects = () => {
                   {technology1.map((i: string, idx: number) => (
                      <div
                         key={idx}
-                        className={`text-xl capitalize flex items-center gap-2 pl-2 rounded-lg bg-priamry   justify-start hover:text-secondary  text-white w-40 ${styles.card}`}
+                        className={` text-lg md:text-xl  capitalize flex items-center gap-2 pl-2 rounded-lg bg-priamry   justify-start hover:text-secondary  text-white w-36 md:w-40  ${styles.card}`}
                      >
                         <input
                            type="checkbox"

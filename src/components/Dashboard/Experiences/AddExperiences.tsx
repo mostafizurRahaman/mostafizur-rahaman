@@ -205,7 +205,7 @@ const AddExperiences = () => {
          <form
             onSubmit={handleSubmit}
             ref={formRef}
-            className="grid md:grid-cols-2 grid-cols-1 gap-5 px-5 my-10"
+            className="grid md:grid-cols-2 grid-cols-1 gap-5 px-3 md:px-10 my-10"
          >
             <InputBox
                type="text"

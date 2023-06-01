@@ -139,7 +139,7 @@ const AddTestimonial = () => {
    return (
       <>
          <Headings content="Add Testimonial"></Headings>
-         <form onSubmit={handleSubmit} ref={formRef} className="px-10 my-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+         <form onSubmit={handleSubmit} ref={formRef} className="md:px-10 px-3 my-5 grid grid-cols-1 md:grid-cols-2 gap-5">
             <InputBox
                type="text"
                name="name"
