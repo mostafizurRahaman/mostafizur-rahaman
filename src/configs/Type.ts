@@ -35,6 +35,7 @@ export type useTokenType = (email: string) => {
 };
 
 export interface projectCardType {
+   _id?: string;
    name: string;
    subTitle: string;
    client: string;

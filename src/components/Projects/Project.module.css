@@ -8,6 +8,8 @@
    background: linear-gradient(90deg, #ff014f, #4fa6f8);
 }
 
+
+
 @keyframes progress {
    0% {
       background: linear-gradient(-90deg, #ff014f, #4fa6f8);

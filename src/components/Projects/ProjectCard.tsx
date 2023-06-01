@@ -1,37 +1,35 @@
 import { FiGithub, FiLink, FiServer } from "react-icons/fi";
 import styles from "./Project.module.css";
+import { projectCardType } from "../../configs/Type";
+import {useContext } from 'react'
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import DeleteItems from "../Shared/DeleteItems/DeleteItems";
+import { AuthContext } from "../../Context/AuthProvider";
 
-
-interface projectCardType {
-   image: string;
-   name: string;
-   subTitle: string;
-   client: string;
-   server: string;
-   live: string;
-   summery: string;
-   technology: string[];
+interface projectType  {
+   project : projectCardType
 }
-const ProjectCard = ({
-   image,
-   name,
-   subTitle,
-   client,
-   server,
-   live,
-   summery,
-   technology,
-}: projectCardType) => {
+
+const ProjectCard = ({project}:projectType ) => {
+   const navigate:NavigateFunction = useNavigate()
+   const {user}  = useContext(AuthContext); 
+   const {_id,name,subTitle, technology, thumbnail, summery,client, server, live} = project; 
+   
+   const cardNaigate = () => {
+     if(_id){
+        navigate(`/projects/${_id}`) 
+     }
+   }
    return (
-      <div className={`p-[1px] rounded-lg ${styles.card} `}>
+      <div className={`p-[1px] rounded-lg group ${styles.card} `}>
          <div
             className={`text-accent bg-info p-5 rounded-lg  `}
          >
             <div className="overflow-hidden  rounded-md">
                <img
-                  src={image}
+                  src={thumbnail}
                   alt={name}
-                  className="rounded-md object-cover object-top hover:object-bottom w-full h-44    duration-[3s] "
+                  className="rounded-md w-full group-hover:object-bottom  myImage h-44 object-cover object-top   duration-[3s] "
                />
             </div>
             <div className="">
@@ -83,9 +81,17 @@ const ProjectCard = ({
                         {" "}
                         <FiLink></FiLink>{" "}
                      </a>
+                     {
+                        _id && <DeleteItems 
+                                 _id={_id}
+                                 name={name}
+                                 path="projects"
+                              ></DeleteItems>
+                     }
+                     
                   </div>
                   <div>
-                     <button className="px-3 capitalize text-xl  py-1 bg-blue-500 font-medium text-white rounded-lg ">
+                     <button className="px-3 capitalize text-xl  py-1 bg-blue-500 font-medium text-white rounded-lg " onClick={cardNaigate}>
                         more details 
                      </button>
                   </div>

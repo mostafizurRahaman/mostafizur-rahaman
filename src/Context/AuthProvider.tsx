@@ -20,17 +20,19 @@ import {
    logOutType,
 } from "../configs/Type";
 
+
 interface AuthProviderType {
    children: ReactNode;
 }
 
-const auth: Auth = getAuth(app);
+export const auth: Auth = getAuth(app);
 
 export const AuthContext = createContext({} as authInfoType);
 
 const AuthProvider = ({ children }: AuthProviderType) => {
    const [user, setUser] = useState<User | null>(null);
    const [loading, setLoading] = useState<boolean>(false);
+   
 
    // create User
    const createUser: createUserType = (email, password) => {
@@ -51,7 +53,7 @@ const AuthProvider = ({ children }: AuthProviderType) => {
    };
 
    // logOut Function :
-   const logOut: logOutType = () => {
+const logOut: logOutType = () => {
       localStorage.removeItem("token");
       setUser(null); 
       return signOut(auth);

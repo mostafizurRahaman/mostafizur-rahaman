@@ -37,6 +37,10 @@ export const routes = createBrowserRouter([
             path: "/sign-in",
             element: <SignIn></SignIn>, 
          },
+         {
+            path: '/projects/:id', 
+            element: <h1> Hello this is our project deatils</h1>
+         }
       ],
    },
 

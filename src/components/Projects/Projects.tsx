@@ -12,12 +12,14 @@ import "swiper/css/navigation";
 
 // import required modules
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
-import { ProjectErrorType, projectCardType } from "../../configs/Type";
+import {  projectCardType } from "../../configs/Type";
 import { baseURL } from "../../configs/configs";
 
 
+
 const Projects = () => {
-   const [projects, setProjects ] = useState<ProjectErrorType[]>([]);
+   const [projects, setProjects ] = useState<projectCardType[]>([]);
+   
 
    const getProjects = async() => {
       const res = await fetch(`${baseURL}projects`, {
@@ -41,7 +43,7 @@ const Projects = () => {
             <Swiper
                effect={"coverflow"}
                grabCursor={true}
-               // centeredSlides={true}
+               centeredSlides={true}
                slidesPerView={1}
                breakpoints={{
                   640: {
@@ -69,14 +71,7 @@ const Projects = () => {
                {projects.map((i:projectCardType, idx: number) => (
                   <SwiperSlide key={idx}>
                      <ProjectCard
-                        image={i.thumbnail}
-                        name={i.name}
-                        subTitle={i.subTitle}
-                        live={i.live}
-                        client={i.client}
-                        server={i.server}
-                        summery={i.summery}
-                        technology={i.technology}
+                        project={i}
                      ></ProjectCard>
                   </SwiperSlide>
                ))}
