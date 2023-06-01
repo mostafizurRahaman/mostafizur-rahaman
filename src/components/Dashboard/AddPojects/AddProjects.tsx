@@ -276,7 +276,7 @@ const AddProjects = () => {
                   title="Server Side Link"
                   onChange={handleURL}
                ></InputBox>
-               <div className="col-span-2">
+               <div className="md:col-span-2">
                   <InputBox
                      type="text"
                      name="live"
@@ -285,7 +285,7 @@ const AddProjects = () => {
                      onChange={handleURL}
                   ></InputBox>
                </div>
-               <div className="grid md:grid-cols-2 grid-cols-1 gap-5 col-span-2">
+               <div className="grid md:grid-cols-2 grid-cols-1 gap-5 md:col-span-2">
                   <InputBox
                      type="text"
                      name="feature1"
@@ -387,7 +387,7 @@ const AddProjects = () => {
                      onChange={handleUpload}
                   ></ImageUpload>
                </div>
-               <div className="grid grid-cols-5 gap-y-5 gap-x-1 justify-start col-span-2">
+               <div className="grid grid-cols-2 md:grid-cols-5 gap-y-5 gap-x-1 justify-start md:col-span-2">
                   {technology1.map((i: string, idx: number) => (
                      <div
                         key={idx}
@@ -407,7 +407,7 @@ const AddProjects = () => {
                      </div>
                   ))}
                </div>
-               <div className="col-span-2">
+               <div className="md:col-span-2">
                   <SubmitButton
                      disabled={
                         !project?.name ||

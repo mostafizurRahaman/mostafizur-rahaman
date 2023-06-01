@@ -281,7 +281,7 @@ const SignUp = () => {
             <form
                ref={formRef}
                onSubmit={onSubmit}
-               className="grid md:grid-cols-2 grid-cols-1 gap-5 w-full lg:w-1/2 p-5 rounded-lg border-dashed border-2 border-secondary  "
+               className="grid grid-cols-1 md:grid-cols-2  gap-5 w-full lg:w-1/2 p-5 rounded-lg border-dashed border-2 border-secondary  "
             >
                <InputBox
                   type="text"
@@ -325,7 +325,7 @@ const SignUp = () => {
                   error={errors.confirm}
                   onChange={handleConfirm}
                ></InputBox>
-               <div className="col-span-2">
+               <div className="md:col-span-2">
                   <ImageUpload
                      id="myImage"
                      onChange={handleUploadImage}
@@ -333,7 +333,7 @@ const SignUp = () => {
                      error={errors.image}
                   ></ImageUpload>
                </div>
-               <div className="col-span-2 flex items-center justify-center flex-col ">
+               <div className=" md:col-span-2 flex items-center justify-center flex-col ">
                   <CheckBox checked={checked} setChecked={setChecked}>
                      <p className="flex text-xl text-accent  items-center justify-center gap-2 capitalize  ">
                         agree with our{" "}

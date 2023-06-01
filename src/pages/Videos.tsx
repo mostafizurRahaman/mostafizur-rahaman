@@ -52,7 +52,7 @@ const Videos = () => {
    };
    console.log(videos);
    return (
-      <div className="bg-info pt-5">
+      <div className="bg-info pt-5 ">
          <Headings content="Web Development Tutorials"></Headings>
          <div className="grid  grid-cols-1 md:grid-cols-3 gap-5 items-center justify-center p-5">
             {videos?.map((i: video, idx: number) => (

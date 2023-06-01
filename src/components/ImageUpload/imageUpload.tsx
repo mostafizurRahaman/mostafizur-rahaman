@@ -10,8 +10,8 @@ interface ImageUploadType {
 const ImageUpload = ({ id, onChange, image, error }: ImageUploadType) => {
    return (
       <div>
-         <div className="flex items-center  gap-3">
-            <div className="w-1/2">
+         <div className="flex items-center md:flex-row flex-col  gap-3">
+            <div className="w-full md:w-1/2">
                <label
                   htmlFor={id}
                   className="px-5 relative  h-44  border-dashed border-2 border-secondary flex justify-center items-center flex-col gap-1  rounded-xl  bg-primary 
@@ -31,7 +31,7 @@ const ImageUpload = ({ id, onChange, image, error }: ImageUploadType) => {
                   />
                </label>
             </div>
-            <div className="px-5py-2 border-dashed border-2 border-secondary flex justify-center items-center  h-44 flex-col gap-1 text-xl font-bold text-accent  rounded-xl  bg-primary w-1/2 ">
+            <div className="px-5py-2 border-dashed border-2 border-secondary flex justify-center items-center  h-44 flex-col gap-1 text-xl font-bold text-accent  rounded-xl  bg-primary w-full md:w-1/2 ">
                {image ? <img src={image} alt=""className="w-auto p-3 h-[100%]" /> : <p>Preview </p>}
             </div>
          </div>

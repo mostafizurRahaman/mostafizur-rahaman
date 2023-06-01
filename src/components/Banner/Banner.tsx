@@ -15,13 +15,13 @@ const Banner = () => {
                welcome to my dev world
             </h4>
             <div className="space-y-3">
-               <h1 className="text-[39px] md:text-6xl font-bold  md:mt-0 mt-3">
-                  Hi , I'm <br  className="d-block md:d-none"/>
-                  <span className="md:ml-3  text-secondary uppercase ">
+               <h1 className="text-[28px] md:text-6xl font-bold  md:mt-0 mt-3">
+                  Hi , I'm 
+                  <span className="ml-3   md:text-6xl text-secondary  uppercase  ">
                      Mostafizur Rahaman
                   </span>
                </h1>
-               <h3 className=" text-3xl md:text-4xl uppercase font-semibold flex items-center gap-2">
+               <h3 className=" text-[26px] md:text-4xl capitalize md:uppercase font-semibold flex items-center gap-2">
                   <span className=" text-secondary ">a</span>
                   <Typewriter
                      options={{

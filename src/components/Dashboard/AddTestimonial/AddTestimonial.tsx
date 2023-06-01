@@ -154,7 +154,7 @@ const AddTestimonial = () => {
                error={errors.userName}
                onChange={handleUserName}
             ></InputBox>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
                <InputBox
                   type="number"
                   name="reviews"
@@ -182,7 +182,7 @@ const AddTestimonial = () => {
                   onChange={handleUpload}
                ></ImageUpload>
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
                <SubmitButton
                   disabled={
                      !testimonial.name &&

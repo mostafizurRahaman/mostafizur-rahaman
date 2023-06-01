@@ -22,7 +22,7 @@ const Testimonials = () => {
       .catch(err => console.log(err)); 
    })
    return (
-      <section id="testimonials" className="bg-primary py-16 px-10">
+      <section id="testimonials" className="bg-primary py-16 px-5 md:px-10">
          <Headings content="Testimonials"></Headings>
          <Swiper
             //   slidesPerView={3}

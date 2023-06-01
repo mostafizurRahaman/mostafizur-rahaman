@@ -119,7 +119,7 @@ const AddSkills = () => {
                error={errors.expertise}
                onChange={handleExpertise}
             ></InputBox>
-            <div className="flex col-span-2 flex-col gap-3 ">
+            <div className="flex md:col-span-2 flex-col gap-3 ">
                <label className="text-2xl text-accent" htmlFor="icon">
                   Icon
                </label>
@@ -130,7 +130,7 @@ const AddSkills = () => {
                   onChange={handleUpload}
                ></ImageUpload>
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
                <SubmitButton
                   content="add skills"
                   disabled={!skill.name || !skill.icon || !skill.expertise}
