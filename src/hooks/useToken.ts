@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTokenType } from "../configs/Type";
+import { baseURL } from "../configs/configs";
 
 export const useToken: useTokenType = (email) => {
    const [token, setToken] = useState<string>("");
@@ -7,7 +8,7 @@ export const useToken: useTokenType = (email) => {
    useEffect(() => {
       if (email) {
          setTokenLoading(true);
-         fetch(`http://localhost:5000/jwt?email=${email}`)
+         fetch(`${baseURL}jwt?email=${email}`)
             .then((res) => res.json())
             .then((data) => {
                setToken(data.token);

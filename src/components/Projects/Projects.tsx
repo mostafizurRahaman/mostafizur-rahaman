@@ -38,7 +38,7 @@ const Projects = () => {
    
  
    return (
-      <section id="portfolio" className="bg-primary py-16 px-10">
+      <section id="portfolio" className="bg-primary py-16 px-5 md:px-10">
          <Headings content="My Projects"></Headings>
          <div className="py-16 flex items-center justify-center">
             <Swiper

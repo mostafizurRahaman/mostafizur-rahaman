@@ -6,7 +6,7 @@ import { MdLocationPin } from "react-icons/md";
 const ContactInfo = () => {
    return (
       <div className="flex flex-col justify-center items-center gap-6 w-full ">
-         <h3 className="text-4xl font-bold capitalize text-accent text-center">Contact Info</h3>
+         <h3 className=" text-3xl md:text-4xl font-bold capitalize text-accent text-center">Contact Info</h3>
          <ContactCard
             title="Mail"
             subTitle2="mostafizurrahaman0401@gmail.com"

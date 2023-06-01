@@ -42,7 +42,7 @@ const Videos = () => {
          );
          const data = await res.json();
          const videos: video[] = await data.items.filter(
-            (i: video) => i.snippet.title !== "Private video"
+            (i: video) => i.snippet.title !== 'Deleted video' && i.snippet.title !== "Private video"
          );
 
          setVideos(videos);
@@ -50,6 +50,7 @@ const Videos = () => {
          console.log(err);
       }
    };
+   console.log(videos);
    return (
       <div className="bg-info pt-5">
          <Headings content="Web Development Tutorials"></Headings>

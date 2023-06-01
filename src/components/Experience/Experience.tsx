@@ -40,7 +40,7 @@ const Experience = () => {
    );
 
    return (
-      <section id="experience" className="bg-primary px-5 md:px-10 ">
+      <section id="experience" className="bg-primary px-2 md:px-10 ">
          <Headings content="Experience"></Headings>
          <div className=" grid md:grid-cols-2 grid-cols-1 justify-between  gap-10">
                <div>

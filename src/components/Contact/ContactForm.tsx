@@ -117,7 +117,7 @@ const ContactForm = () => {
       formRef?.current?.reset();
    };
    return (
-      <section id="contact" className="bg-primary px-10 pb-10">
+      <section id="contact" className="bg-primary px-2 md:px-10 pb-10">
          <Headings content="Contact me"></Headings>
          <div className="flex gap-10 items-start mt-10 md:flex-row flex-col ">
             <div className="md:w-1/3 w-full ">
@@ -129,7 +129,7 @@ const ContactForm = () => {
                ref={formRef}
             >
                <div>
-                  <h3 className="text-4xl font-bold capitalize text-accent text-center">
+                  <h3 className="text-3xl md:text-4xl font-bold capitalize text-accent text-center">
                      Let's work together
                   </h3>
                </div>

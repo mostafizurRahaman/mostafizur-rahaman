@@ -229,13 +229,16 @@ const SignUp = () => {
       };
 
       try {
-         const res = await fetch("http://localhost:5000/user", {
-            method: "post",
-            headers: {
-               "content-type": "application/json",
-            },
-            body: JSON.stringify(newUser),
-         });
+         const res = await fetch(
+            "https://mostafizur-portfolio-server.vercel.app/user",
+            {
+               method: "post",
+               headers: {
+                  "content-type": "application/json",
+               },
+               body: JSON.stringify(newUser),
+            }
+         );
 
          const data = await res.json();
          if (data.acknowledged === true) {

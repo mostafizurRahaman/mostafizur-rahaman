@@ -15,7 +15,7 @@ const Navbar = () => {
    const { user, logOut } = useContext(AuthContext);
    const navigate: NavigateFunction = useNavigate();
    return (
-      <div className="flex items-center justify-between h-20 bg-primary text-secondary px-5 md:px-10 border-b border-accent sticky top-0 w-full z-50 ">
+      <div className="flex items-center justify-between h-20 bg-primary text-secondary px-5 md:px-10 border-b border-accent sticky top-0 w-full z-[999] ">
          <img
             src={logo}
             className="ml-5 w-14 h-14 rounded-full border-2 border-secondary"
