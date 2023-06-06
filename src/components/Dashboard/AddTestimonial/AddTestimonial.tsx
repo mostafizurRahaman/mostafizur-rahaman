@@ -13,6 +13,7 @@ import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import { baseURL } from "../../../configs/configs";
 
+
 const AddTestimonial = () => {
    const [testimonial, setTestimonial] = useState<TestimonialType>({
       name: "",
@@ -29,7 +30,7 @@ const AddTestimonial = () => {
       image: "",
    });
 
-   const formRef = useRef<HTMLFormElement>(null)
+   const formRef = useRef<HTMLFormElement>(null);
    const handleName: ChangeTypeInput = (e) => {
       const name = e.target.name;
       const value = e.target.value;
@@ -60,35 +61,34 @@ const AddTestimonial = () => {
    const handleReview: ChangeTypeInput = (e) => {
       const name = e.target.name;
       const value = e.target.value;
-      const numvalue  = parseInt(value); 
+      const numvalue = parseInt(value);
 
       if (value.length < 0) {
          setErrors({ ...errors, [name]: "reviews shouldn't be empty" });
          setTestimonial({ ...testimonial, [name]: "" });
-      }else if(isNaN(numvalue)){
+      } else if (isNaN(numvalue)) {
          setErrors({ ...errors, [name]: "reviews must be an number" });
          setTestimonial({ ...testimonial, [name]: "" });
-      }else if(numvalue <=0 || numvalue >5){
+      } else if (numvalue <= 0 || numvalue > 5) {
          setErrors({ ...errors, [name]: "reviews must be between 1-5" });
          setTestimonial({ ...testimonial, [name]: "" });
-      }
-      else{
-         setErrors({...errors, [name]: ''}); 
-         setTestimonial({...testimonial, [name]: numvalue}); 
+      } else {
+         setErrors({ ...errors, [name]: "" });
+         setTestimonial({ ...testimonial, [name]: numvalue });
       }
    };
    const handleMessage: ChangeTypeTextArea = (e) => {
       const name = e.target.name;
       const value = e.target.value;
-      if(value.length < 0){
-         setErrors({...errors , [name]: `${name} should't be empty`}); 
-         setTestimonial({...testimonial, [name]: ''}); 
-      }else if(value.length < 50){
-         setErrors({...errors , [name]: `${name} should be 50-100`}); 
-         setTestimonial({...testimonial, [name]: ''}); 
-      }else{
-         setErrors({...errors , [name]: ``}); 
-         setTestimonial({...testimonial, [name]: value}); 
+      if (value.length < 0) {
+         setErrors({ ...errors, [name]: `${name} should't be empty` });
+         setTestimonial({ ...testimonial, [name]: "" });
+      } else if (value.length < 50) {
+         setErrors({ ...errors, [name]: `${name} should be 50-100` });
+         setTestimonial({ ...testimonial, [name]: "" });
+      } else {
+         setErrors({ ...errors, [name]: `` });
+         setTestimonial({ ...testimonial, [name]: value });
       }
    };
    const handleUpload: ChangeTypeInput = async (e) => {
@@ -119,27 +119,32 @@ const AddTestimonial = () => {
       }
    };
 
-   const handleSubmit : FormSubmitType =async (e) => {
-      e.preventDefault(); 
-      
-      const res = await fetch(`${baseURL}testimonials`, {
-         method: "post", 
-         headers: {
-            'content-type': 'application/json', 
-         },
-          body: JSON.stringify(testimonial)
-      })
+   const handleSubmit: FormSubmitType = async (e) => {
+      e.preventDefault();
 
-      const data = await res.json()
-      if(data.acknowledged){
-            setTestimonial({...testimonial, image:""}); 
-            formRef?.current?.reset()
+      const res = await fetch(`${baseURL}testimonials`, {
+         method: "post",
+         headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem('token')}`,
+         },
+         body: JSON.stringify(testimonial),
+      });
+
+      const data = await res.json();
+      if (data.acknowledged) {
+         setTestimonial({ ...testimonial, image: "" });
+         formRef?.current?.reset();
       }
-   }
+   };
    return (
       <>
          <Headings content="Add Testimonial"></Headings>
-         <form onSubmit={handleSubmit} ref={formRef} className="md:px-10 px-3 my-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+         <form
+            onSubmit={handleSubmit}
+            ref={formRef}
+            className="md:px-10 px-3 my-5 grid grid-cols-1 md:grid-cols-2 gap-5"
+         >
             <InputBox
                type="text"
                name="name"
@@ -201,9 +206,8 @@ const AddTestimonial = () => {
 
 export default AddTestimonial;
 
-
 //*
-// 240346 - hridoy hossain 
+// 240346 - hridoy hossain
 // polin - 143268
-// maria - 
+// maria -
 // mostafiz  - 240714

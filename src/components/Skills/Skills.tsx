@@ -9,11 +9,7 @@ const Skills = () => {
     const [skills ,setSkills]  = useState<skills[]>([]); 
 
     const loadSkills =async ()=>{
-         const res = await fetch(`${baseURL}skills`, {
-            headers: {
-               "authorization": `bearer ${localStorage.getItem('token')}`
-            }
-         }); 
+         const res = await fetch(`${baseURL}skills`); 
          const data = await res.json(); 
          setSkills(data); 
          

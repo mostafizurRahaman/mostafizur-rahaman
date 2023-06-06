@@ -11,6 +11,7 @@ import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { useToken } from "../hooks/useToken";
 import Loading from "../components/Shared/Loading/Loading";
+import { baseURL } from "../configs/configs";
 interface formData {
    firstName: string;
    lastName: string;
@@ -230,11 +231,12 @@ const SignUp = () => {
 
       try {
          const res = await fetch(
-            "https://mostafizur-portfolio-server.vercel.app/user",
+            `${baseURL}users`,
             {
                method: "post",
                headers: {
                   "content-type": "application/json",
+                  authorization:`bearer ${localStorage.getItem('token')}`
                },
                body: JSON.stringify(newUser),
             }

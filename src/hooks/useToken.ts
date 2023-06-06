@@ -17,9 +17,6 @@ export const useToken: useTokenType = (email) => {
             })
             .catch((err) => {
                console.log(err);
-            })
-            .finally(() => {               
-               setTokenLoading(false);
             });
       }
    }, [email]);

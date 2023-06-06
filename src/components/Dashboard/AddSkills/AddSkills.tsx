@@ -5,8 +5,9 @@ import { useRef, useState } from "react";
 import { ChangeTypeInput, FormSubmitType, SkillsError, skills } from "../../../configs/Type";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
-import { baseURL } from "../../../configs/configs";
+
 import {  NavigateFunction, useNavigate } from "react-router-dom";
+import { baseURL } from "../../../configs/configs";
 
 const AddSkills = () => {
    const [skill, setSkill] = useState<skills>({
@@ -86,6 +87,7 @@ const AddSkills = () => {
          method: "post",
          headers: {
             "content-type": "application/json", 
+            authorization: `bearer ${localStorage.getItem('token')}`, 
          } , 
          body: JSON.stringify(skill)
        })

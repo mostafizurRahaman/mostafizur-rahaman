@@ -12,14 +12,14 @@ import TextArea from "../../Shared/TextArea";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import SubmitButton from "../../Shared/SubmitButton";
 import styles from "../Profile/Profile.module.css";
-import { baseURL } from "../../../configs/configs";
 import { useNavigate, NavigateFunction} from "react-router-dom";
+import { baseURL } from "../../../configs/configs";
 
 const AddProjects = () => {
    const [technology, setTechnology] = useState<string[]>([]);
    const formRef = useRef<HTMLFormElement>(null);
    const navigate: NavigateFunction= useNavigate(); 
-   console.log(baseURL);
+
    const [project, setProject] = useState<projectCardType>({
       name: "",
       subTitle: "",
@@ -215,6 +215,7 @@ const AddProjects = () => {
                method: "post",
                headers: {
                   "content-type": "application/json",
+                  authorization: `bearer ${localStorage.getItem('token')}`,
                },
                body: JSON.stringify(project),
             });

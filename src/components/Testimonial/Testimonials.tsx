@@ -53,11 +53,12 @@ const Testimonials = () => {
                   <SwiperSlide>
                      <TestimonialCard
                         key={idx}
+                        _id={i._id}
                         image={i.image}
                         name={i.name}
                         userName={i.userName}
                         reviews={i.reviews}
-                        summery={i.message}
+                        message={i.message}
                      ></TestimonialCard>
                   </SwiperSlide>
                );

@@ -113,6 +113,7 @@ type image = {
    image: string;
 };
 export type TestimonialType = {
+   _id?:string, 
    name: string;
    userName: string;
    reviews: number;

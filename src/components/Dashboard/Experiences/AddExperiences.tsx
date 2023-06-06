@@ -12,8 +12,9 @@ import TextArea from "../../Shared/TextArea";
 import ImageUpload from "../../ImageUpload/imageUpload";
 import InputDate from "../../Shared/InputDate";
 import SubmitButton from "../../Shared/SubmitButton";
-import { baseURL } from "../../../configs/configs";
+
 import SelectedMenu from "../../Shared/SelectedMenu/SelectedMenu";
+import { baseURL } from "../../../configs/configs";
 
 const AddExperiences = () => {
    const [experience, setExperience] = useState<ExperienceType>({
@@ -148,6 +149,7 @@ const AddExperiences = () => {
          method: "POST",
          headers: {
             "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem('token')}`, 
          },
          body: JSON.stringify(experience),
       });

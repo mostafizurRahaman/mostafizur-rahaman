@@ -10,7 +10,8 @@ export const useAdmin : UseAdminType = (email) => {
       if(email){
          fetch(`http://localhost:5000/users/admin?email=${email}`,{
             headers: {
-               'authorization' : `bearer ${localStorage.getItem('token')}`
+               'content-type': 'application/json',
+               authorization : `bearer ${localStorage.getItem('token')}`
             }
          } )
          .then(res => res.json())

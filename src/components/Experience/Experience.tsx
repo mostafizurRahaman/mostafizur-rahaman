@@ -11,15 +11,8 @@ const Experience = () => {
    const { logOut } = useContext(AuthContext);
    const navigate: NavigateFunction = useNavigate();
    const getExperiences = async () => {
-      const res = await fetch(`${baseURL}experiences`, {
-         headers: {
-            authorization: `bearer ${localStorage.getItem("token")}`,
-         },
-      });
-      if (res.status === 401 || res.status === 403) {
-         logOut();
-         return navigate("/sign-in");
-      }
+      const res = await fetch(`${baseURL}experiences`);
+      
       const data = await res.json();
       setExperieces(data);
       console.log(data);
@@ -66,7 +59,7 @@ const Experience = () => {
                   <div className="flex flex-col gap-20 border-l-4 border-black my-10">
                      {EducationalExperiences.map((i: ExperienceType) => (
                         <ExperienceCard
-                            _id={i._id}
+                           _id={i._id}
                            achivement={i.achivement}
                            institute={i.institute}
                            description={i.description}
