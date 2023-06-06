@@ -2,8 +2,10 @@ import {useContext} from 'react';
 import { baseURL } from "../../../configs/configs";
 import { AuthContext } from "../../../Context/AuthProvider";
 import toast from 'react-hot-toast';
-import { FiDelete } from 'react-icons/fi';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { AiTwotoneDelete } from 'react-icons/ai';
+import { NavigateFunction, useActionData, useNavigate } from 'react-router-dom';
+import { useAdmin } from '../../../hooks/useAdmin';
+import Loading from '../Loading/Loading';
 
 interface DeleteItemsType {
    _id: string,
@@ -13,11 +15,11 @@ interface DeleteItemsType {
 }
 
 const DeleteItems = ({_id, path, name}: DeleteItemsType) => {
-   const {logOut} = useContext(AuthContext); 
+   const {logOut, user} = useContext(AuthContext); 
    const navigate:NavigateFunction = useNavigate(); 
    const handleDelete = async() => {
-      console.log(`${baseURL}${path}/${_id}`)
-       const res = await fetch(`${baseURL}${path}/${_id}`, {
+      console.log(`http://localhost:5000/${path}/${_id}`)
+       const res = await fetch(`http://localhost:5000/${path}/${_id}`, {
          method: 'delete', 
          headers: {
             'autorization': `bearer ${localStorage.getItem('token')}`,
@@ -31,7 +33,7 @@ const DeleteItems = ({_id, path, name}: DeleteItemsType) => {
        }
 
        const data = await res.json(); 
-      if(data.deletedCount ===1){
+      if(data.deletedCount === 1){
          toast.success(`${name} is deleted successfully  `)
       }else{
          toast.success(` Sorry . ${name} did't deleted. `)
@@ -39,9 +41,10 @@ const DeleteItems = ({_id, path, name}: DeleteItemsType) => {
 
    }
 
-   return (
-      <FiDelete onClick={handleDelete} className=" hover:text-secondary duration-1000"></FiDelete>
-   );
+   
+      return  <AiTwotoneDelete onClick={handleDelete} className="  duration-1000 "></AiTwotoneDelete>
+   
+
 };
 
 export default DeleteItems;

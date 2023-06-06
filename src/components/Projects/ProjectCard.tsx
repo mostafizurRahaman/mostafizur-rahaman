@@ -84,7 +84,7 @@ const ProjectCard = ({project}:projectType ) => {
                         <FiLink></FiLink>{" "}
                      </a>
                      {
-                       (isAdmin && _id) && <DeleteItems 
+                       (isAdmin && _id )&& <DeleteItems 
                                  _id={_id}
                                  name={name}
                                  path="projects"

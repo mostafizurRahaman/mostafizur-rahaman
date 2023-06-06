@@ -74,6 +74,7 @@ export interface ProjectErrorType {
 }
 
 export interface ExperienceType {
+   _id?: string;
    achivement: string;
    institute: string;
    description: string;

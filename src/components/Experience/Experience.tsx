@@ -48,6 +48,7 @@ const Experience = () => {
                   <div className="flex flex-col gap-20 border-l-4 border-black my-10">
                      {workedExperiences.map((i: ExperienceType) => (
                         <ExperienceCard
+                           _id={i._id}
                            achivement={i.achivement}
                            institute={i.institute}
                            description={i.description}
@@ -65,6 +66,7 @@ const Experience = () => {
                   <div className="flex flex-col gap-20 border-l-4 border-black my-10">
                      {EducationalExperiences.map((i: ExperienceType) => (
                         <ExperienceCard
+                            _id={i._id}
                            achivement={i.achivement}
                            institute={i.institute}
                            description={i.description}
