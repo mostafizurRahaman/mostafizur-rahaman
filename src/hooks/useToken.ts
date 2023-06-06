@@ -4,16 +4,21 @@ import { baseURL } from "../configs/configs";
 
 export const useToken: useTokenType = (email) => {
    const [token, setToken] = useState<string>("");
-   const [tokenLoading, setTokenLoading] = useState<boolean>(false);
+   const [tokenLoading, setTokenLoading] = useState<boolean>(true);
    useEffect(() => {
       if (email) {
-         setTokenLoading(true);
          fetch(`${baseURL}jwt?email=${email}`)
             .then((res) => res.json())
             .then((data) => {
                setToken(data.token);
                console.log(data);
                localStorage.setItem("token", data.token);
+               setTokenLoading(false);
+            })
+            .catch((err) => {
+               console.log(err);
+            })
+            .finally(() => {               
                setTokenLoading(false);
             });
       }

@@ -13,6 +13,7 @@ const Cursor = () => {
          outerStyle={{
             border: "3px solid #fff",
          }}
+         className="z-[99999]"
       />
    );
 };

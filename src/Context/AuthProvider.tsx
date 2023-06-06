@@ -61,6 +61,7 @@ const logOut: logOutType = () => {
 
    // User State cheacker :
    useEffect(() => {
+      setLoading(true)
       const unSubscribe: Unsubscribe = onAuthStateChanged(
          auth,
          (currentUser) => {

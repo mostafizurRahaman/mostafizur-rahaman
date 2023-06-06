@@ -3,7 +3,7 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home";
 
 import SignUp from "../pages/SignUp";
-import UserLayout from "../Layout/DashboardLayout";
+
 import Videos from "../pages/Videos";
 import SignIn from "../pages/SignIn";
 import Profile from "../components/Dashboard/Profile/Profile";
@@ -11,7 +11,9 @@ import AddProjects from "../components/Dashboard/AddPojects/AddProjects";
 import AddExperiences from "../components/Dashboard/Experiences/AddExperiences";
 import AddSkills from "../components/Dashboard/AddSkills/AddSkills";
 import AddTestimonial from "../components/Dashboard/AddTestimonial/AddTestimonial";
-
+import DashboardLayout from "../Layout/DashboardLayout";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AdminRoute from "./AdminRoute/AdminRoute";
 export const routes = createBrowserRouter([
    {
       path: "/",
@@ -35,39 +37,63 @@ export const routes = createBrowserRouter([
          },
          {
             path: "/sign-in",
-            element: <SignIn></SignIn>, 
+            element: <SignIn></SignIn>,
          },
          {
-            path: '/projects/:id', 
-            element: <h1> Hello this is our project deatils</h1>
-         }
+            path: "/projects/:id",
+            element: <h1> Hello this is our project deatils</h1>,
+         },
       ],
    },
 
    {
       path: "/dashboard",
-      element: <UserLayout></UserLayout>,
+      element: (
+         <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+         </PrivateRoute>
+      ),
       children: [
          {
-            path:'/dashboard/', 
-            element: <Profile></Profile>
+            path: "/dashboard/",
+            element: (
+               <AdminRoute>
+                  <Profile></Profile>
+               </AdminRoute>
+            ),
          },
          {
-            path:'/dashboard/add-project', 
-            element: <AddProjects></AddProjects>
+            path: "/dashboard/add-project",
+            element: (
+               <AdminRoute>
+                  <AddProjects></AddProjects>
+               </AdminRoute>
+            ),
          },
          {
-            path:"/dashboard/experiences", 
-            element:<AddExperiences></AddExperiences>
+            path: "/dashboard/experiences",
+            element: (
+               <AdminRoute>
+                  <AddExperiences></AddExperiences>
+               </AdminRoute>
+            ),
          },
          {
-            path:"/dashboard/skills", 
-            element:<AddSkills></AddSkills>
-         }, 
+            path: "/dashboard/skills",
+            element: (
+               <AdminRoute>
+                  <AddSkills></AddSkills>
+               </AdminRoute>
+            ),
+         },
          {
-            path: "/dashboard/testimonials", 
-            element: <AddTestimonial></AddTestimonial>
-         }
-      ]
+            path: "/dashboard/testimonials",
+            element: (
+               <AdminRoute>
+                  <AddTestimonial></AddTestimonial>
+               </AdminRoute>
+            ),
+         },
+      ],
    },
 ]);

@@ -5,6 +5,7 @@ import {useContext } from 'react'
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import DeleteItems from "../Shared/DeleteItems/DeleteItems";
 import { AuthContext } from "../../Context/AuthProvider";
+import { useAdmin } from "../../hooks/useAdmin";
 
 interface projectType  {
    project : projectCardType
@@ -13,6 +14,7 @@ interface projectType  {
 const ProjectCard = ({project}:projectType ) => {
    const navigate:NavigateFunction = useNavigate()
    const {user}  = useContext(AuthContext); 
+   const {isAdmin} = useAdmin(user?.email  as string); 
    const {_id,name,subTitle, technology, thumbnail, summery,client, server, live} = project; 
    
    const cardNaigate = () => {
@@ -82,11 +84,11 @@ const ProjectCard = ({project}:projectType ) => {
                         <FiLink></FiLink>{" "}
                      </a>
                      {
-                       user?.email === "mostafizurrahaman0401@gmail.com" &&(  _id && <DeleteItems 
+                       (isAdmin && _id) && <DeleteItems 
                                  _id={_id}
                                  name={name}
                                  path="projects"
-                              ></DeleteItems>)
+                              ></DeleteItems>
                      }
                      
                   </div>
