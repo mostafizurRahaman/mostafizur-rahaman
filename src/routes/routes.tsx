@@ -14,6 +14,7 @@ import AddTestimonial from "../components/Dashboard/AddTestimonial/AddTestimonia
 import DashboardLayout from "../Layout/DashboardLayout";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import ProjectDetails from "../pages/ProjectDetails";
 export const routes = createBrowserRouter([
    {
       path: "/",
@@ -41,7 +42,7 @@ export const routes = createBrowserRouter([
          },
          {
             path: "/projects/:id",
-            element: <h1> Hello this is our project deatils</h1>,
+            element: <ProjectDetails></ProjectDetails>,
          },
       ],
    },

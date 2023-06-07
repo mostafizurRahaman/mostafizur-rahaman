@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { UseAdminType, } from "../configs/Type";
+import { baseURL } from "../configs/configs";
 
 
 
@@ -8,7 +9,7 @@ export const useAdmin : UseAdminType = (email) => {
    const [isAdminLoading, setIsAdminLoading] = useState<boolean>(true);
    useEffect(()=>{
       if(email){
-         fetch(`http://localhost:5000/users/admin?email=${email}`,{
+         fetch(`${baseURL}users/admin?email=${email}`,{
             headers: {
                'content-type': 'application/json',
                authorization : `bearer ${localStorage.getItem('token')}`
